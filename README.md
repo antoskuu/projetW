@@ -5,7 +5,7 @@ Site inspiré de [Letterboxd](https://letterboxd.com/)
 
 [Forum qui parle des API de films](https://www.developpez.net/forums/d1470353/webmasters-developpement-web/general-conception-web/webmarketing/api-recuperer-infos-films-series-etc/)
 
-V0:
+v0 :
 
 - Un système de login dès le début qui pull une bdd
 
