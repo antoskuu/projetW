@@ -1,5 +1,5 @@
 # V0 Projet W
-Site inspiré par [Letterboxd](https://letterboxd.com/)
+Site inspiré de [Letterboxd](https://letterboxd.com/)
 
 V0:
 
