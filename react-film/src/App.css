@@ -129,4 +129,35 @@ body {
   .add-favourites span {
 	margin-right: 5px;
   }
+
+
+  .chat-window {
+	position: fixed;
+	bottom: 0px;
+	right: 20px;
+	width: 500px;
+  }
   
+  .chat-header {
+	background-color: #535353;
+	color: #fff;
+	padding: 10px;
+	cursor: pointer;
+	border-top-left-radius: 20px; /* Arrondir uniquement l'angle supérieur gauche */
+	border-top-right-radius: 20px; /* Arrondir uniquement l'angle supérieur droit */
+  }
+  
+  .chat-content {
+	background-color: #666666;
+	padding: 10px;
+	height: 500px;
+	overflow-y: auto;
+	display: none; /* Masquer le contenu par défaut */
+	transition: transform 0.3s ease; /* Ajouter une transition */
+	transform: translateY(100%); /* Déplacer le contenu en dehors de la vue par défaut */
+  }
+  
+  .chat-content.open {
+	display: block; /* Afficher le contenu lorsque la classe 'open' est appliquée */
+	transform: translateY(0); /* Faire glisser le contenu vers le haut */
+  }
