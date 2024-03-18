@@ -93,7 +93,8 @@ body {
 	justify-content: center;
 	align-items: center;
 	padding: 20px;
-	background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour une meilleure lisibilité */
+	/* Retirez le fond noir semi-transparent */
+	background-color: transparent; 
 	color: white; /* Texte en blanc pour une meilleure lisibilité */
   }
   
@@ -117,7 +118,6 @@ body {
 	position: absolute; /* Positionne le pseudo-élément par rapport au parent */
 	bottom: 0; /* Positionne le pseudo-élément au bas du parent */
 	right: 0; /* Positionne le pseudo-élément à l'extrémité droite du parent */
-	background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour améliorer la lisibilité */
 	color: white; /* Couleur du texte */
   }
   
