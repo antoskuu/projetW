@@ -60,7 +60,7 @@ const App = () => {
   return (
     <div className='container-fluid movie-app'>
       <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieListHeading heading='Films de baisés' />
+        <MovieListHeading heading='TC-Movies' />
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} /> {/* Passer le placeholder à SearchBox */}
       </div>
       <div className='bouton-serie-film'>
