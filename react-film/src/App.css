@@ -39,7 +39,7 @@ body {
   opacity: 1;
 }
 .overlay {
-	position: absolute;
+	position: top;
 	background: rgba(0, 0, 0, 0.8);
 	width: 100%;
 	transition: 0.5s ease;
@@ -81,3 +81,51 @@ body {
 #bouton-film:focus:not(:disabled) {
 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
+
+.movie-details {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour une meilleure lisibilité */
+	color: white; /* Texte en blanc pour une meilleure lisibilité */
+  }
+  
+  .details {
+	text-align: center;
+  }
+  
+  .title {
+	font-size: 24px;
+  }
+  
+  .description {
+	max-height: calc(1.2em * 5); /* Hauteur maximale de 5 lignes */
+	overflow: hidden; /* Cacher le texte qui dépasse */
+	text-overflow: ellipsis; /* Ajouter des points de suspension pour indiquer que le texte est tronqué */
+	position: relative; /* Permet de positionner le pseudo-élément ::after par rapport à son parent */
+  }
+  
+  .description::after {
+	content: '...'; /* Contenu du pseudo-élément */
+	position: absolute; /* Positionne le pseudo-élément par rapport au parent */
+	bottom: 0; /* Positionne le pseudo-élément au bas du parent */
+	right: 0; /* Positionne le pseudo-élément à l'extrémité droite du parent */
+	background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent pour améliorer la lisibilité */
+	color: white; /* Couleur du texte */
+  }
+  
+  .add-favourites {
+	margin-top: 20px;
+  }
+  
+  .add-favourites span {
+	margin-right: 5px;
+  }
+  

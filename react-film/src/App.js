@@ -4,14 +4,11 @@ import './App.css';
 import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
-import AddFavourites from './components/AddFavourites';
-import MovieDetails from './components/MovieDetails'; // Nouveau composant pour les détails du film
 
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [selectedType, setSelectedType] = useState('movie'); // Nouvel état pour les détails du film sélectionné
-  const [selectedMovie, setSelectedMovie] = useState(null); // Nouvel état pour les détails du film sélectionné
 
   const getFeatured = async (selectedType) => {
     const url = `https://api.themoviedb.org/3/discover/${selectedType}?api_key=f33b828f3a9d89dcc02bf38eaea2b131&sort_by=popularity.desc&language=fr-FR`;
@@ -39,20 +36,11 @@ const App = () => {
     }
   };
 
-  const getMovieDetails = async (selectedType,movieId) => {
-    const url = `https://api.themoviedb.org/3/${selectedType}/${movieId}?api_key=f33b828f3a9d89dcc02bf38eaea2b131&language=fr-FR`;
-    const response = await fetch(url);
-    const responseJson = await response.json();
 
-    if (responseJson) {
-      setSelectedMovie(responseJson);
-    }
-  };
 
   useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === 'Enter') {
-        setSelectedMovie(null);
         getMovieRequest(selectedType,searchValue);
       }
     };
@@ -76,23 +64,16 @@ const App = () => {
         <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} /> {/* Passer le placeholder à SearchBox */}
       </div>
       <div className='bouton-serie-film'>
-        <button id='bouton-film' onClick={() => {setSelectedType('movie'); setSelectedMovie(null);}} disabled={selectedType === 'movie'}>
+        <button id='bouton-film' onClick={() => {setSelectedType('movie');}} disabled={selectedType === 'movie'}>
           Film
         </button>
-        <button id='bouton-serie' onClick={() => {setSelectedType('tv'); setSelectedMovie(null);}} disabled={selectedType === 'tv'}>
+        <button id='bouton-serie' onClick={() => {setSelectedType('tv');}} disabled={selectedType === 'tv'}>
           Série
         </button>
       </div>
       <div className='row'>
-      <MovieList movies={movies} favouriteComponent={AddFavourites} getMovieDetails={getMovieDetails} selectedType={selectedType} />
+      <MovieList movies={movies} selectedType={selectedType} />
       </div>
-      {selectedMovie && (
-        <div className='row'>
-          <div className='col'>
-            <MovieDetails movie={selectedMovie} selectedType={selectedType} />
-          </div>
-        </div>
-      )}
       <h1>Films en favoris</h1>
     </div>
   );
