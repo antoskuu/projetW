@@ -5,11 +5,17 @@ const MovieList = ({ movies, favouriteComponent, getMovieDetails, selectedType }
   const handleClick = (movieId) => {
     getMovieDetails(selectedType, movieId);
   };
-
+  const handleMouseOver = (movieId) => {
+    getMovieDetails(selectedType, movieId); // Utiliser la fonction getMovieDetails passée en tant que prop
+  };
   return (
     <React.Fragment>
       {movies.map((movie, index) => (
-        <div className='image-container d-flex justify-content-start m-3' key={index}>
+        <div 
+          className='image-container d-flex justify-content-start m-3' 
+          key={index}
+          onMouseOver={() => handleMouseOver(movie.id)} // Ajoutez cette ligne
+        >
           <img
             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
             alt='movie'
