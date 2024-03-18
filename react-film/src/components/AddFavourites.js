@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const AddFavourite = () => {
+const AddFavourites = () => {
 	return (
 		<React.Fragment>
 			<span className='mr-2'>Mettre en favoris</span>
@@ -23,4 +23,4 @@ const AddFavourite = () => {
 	);
 };
 
-export default AddFavourite;
+export default AddFavourites;
