@@ -1,16 +1,14 @@
 import React from 'react';
 import '../App.css';
 
-const MovieList = (props) => {
-  const FavouriteComponent = props.favouriteComponent;
-
+const MovieList = ({ movies, favouriteComponent, getMovieDetails, selectedType }) => {
   const handleClick = (movieId) => {
-    props.getMovieDetails(movieId); // Utiliser la fonction getMovieDetails passée en tant que prop
+    getMovieDetails(selectedType, movieId);
   };
 
   return (
     <React.Fragment>
-      {props.movies.map((movie, index) => (
+      {movies.map((movie, index) => (
         <div className='image-container d-flex justify-content-start m-3' key={index}>
           <img
             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
@@ -18,7 +16,7 @@ const MovieList = (props) => {
             onClick={() => handleClick(movie.id)}
           />
           <div className='overlay d-flex align-items-center justify-content-center'>
-            <FavouriteComponent />
+            <favouriteComponent />
           </div>
         </div>
       ))}
