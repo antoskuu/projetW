@@ -21,8 +21,11 @@ const MovieList = ({ movies, selectedType }) => {
       setSelectedMovie(movieData);
     } catch (error) {
       console.error('Error fetching movie details:', error);
-    } finally {
     }
+  };
+
+  const handleMouseLeave = () => {
+    setSelectedMovie(null); // Réinitialiser les détails du film lorsque l'utilisateur quitte l'image
   };
 
   return (
@@ -31,15 +34,18 @@ const MovieList = ({ movies, selectedType }) => {
         <div
           className='image-container d-flex justify-content-start m-3'
           key={index}
+          onMouseOver={() => handleMouseOver(movie.id)}
+          onMouseLeave={handleMouseLeave} // Ajouter un gestionnaire d'événements onMouseLeave pour réinitialiser les détails du film
         >
           <img
             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
             alt='movie'
-            onMouseOver={() => handleMouseOver(movie.id)}
           />
-          <div className='overlay d-flex align-items-center justify-content-center'>
+          {selectedMovie && ( // Afficher les détails uniquement si un film est sélectionné
+            <div className='overlay d-flex align-items-center justify-content-center'>
               <AddFavourites movie={selectedMovie} selectedType={selectedType} />
-          </div>
+            </div>
+          )}
         </div>
       ))}
     </React.Fragment>

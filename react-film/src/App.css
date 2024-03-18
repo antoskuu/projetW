@@ -112,6 +112,7 @@ body {
 	text-overflow: ellipsis; /* Ajouter des points de suspension pour indiquer que le texte est tronqué */
 	position: relative; /* Permet de positionner le pseudo-élément ::after par rapport à son parent */
   }
+
   
   .description::after {
 	content: '...'; /* Contenu du pseudo-élément */
