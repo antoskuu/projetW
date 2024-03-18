@@ -1,22 +1,27 @@
 body {
-	background: #3f3f3f;
+	background: #000000;
 	color: #ffffff;
 }
 
 .movie-app > .row {
 	overflow-x: auto;
 	flex-wrap: nowrap;
+	height: 100%; 
+    width: 100%; 
+	padding: 20px 0;
 }
 
 .image-container img {
   width: 300px;
   height: auto;
+  border-radius: 20px;
   /* Supprimez la transition ici */
 }
 .image-container {
   width: 300px;
   height : auto;
   position:relative;
+  border-radius: 20px;
 }
 
 .image-container:hover {
@@ -24,8 +29,10 @@ body {
 }
 
 .image-container:hover img {
+	opacity: 0.2;
   transform: scale(1.1); /* Déplacez la transition ici */
   transition: transform 0.2s;
+  border-radius: 20px;
 }
 
 .image-container:hover .overlay {
