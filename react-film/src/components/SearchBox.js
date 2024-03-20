@@ -1,18 +1,21 @@
-//SearchBox.js
-
 import React from 'react';
 
-const SearchBox = (props) => {
-	return (
-		<div className='col col-sm-4'>
-			<input
-				className='form-control'
-				value={props.value}
-				onChange={(event) => props.setSearchValue(event.target.value)}
-				placeholder='Rechercher...'
-			></input>
-		</div>
-	);
+const SearchBox = ({ handleSearch }) => {
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch(event.target.value);
+    }
+  };
+
+  return (
+    <div className='col col-sm-4'>
+      <input
+        className='form-control'
+        onKeyPress={handleKeyPress}
+        placeholder='Rechercher...'
+      ></input>
+    </div>
+  );
 };
 
 export default SearchBox;

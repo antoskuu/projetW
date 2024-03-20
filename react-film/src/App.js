@@ -8,7 +8,6 @@ import ChatWindow from './components/ChatWindow';
 
 const App = () => {
   const [movies, setMovies] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
   const [selectedType, setSelectedType] = useState('movie');
   const [isChatOpen, setIsChatOpen] = useState(false);
   const messages = [
@@ -24,10 +23,20 @@ const App = () => {
     { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
     { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
     { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
-    
+    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
+    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
+    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
+    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
+    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
+    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
+    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
+    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
+    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
+    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
+    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
+    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
     // Ajoutez plus de messages au besoin
   ];
-  
 
   const getFeatured = async (selectedType) => {
     const url = `https://api.themoviedb.org/3/discover/${selectedType}?api_key=f33b828f3a9d89dcc02bf38eaea2b131&sort_by=popularity.desc&language=fr-FR`;
@@ -55,7 +64,11 @@ const App = () => {
     }
   };
 
-  useEffect(() => {
+  const handleSearch = (searchValue) => {
+    getMovieRequest(selectedType, searchValue);
+  };
+
+  /* useEffect(() => {
     const handleKeyPress = (event) => {
       if (event.key === 'Enter') {
         getMovieRequest(selectedType, searchValue);
@@ -67,7 +80,7 @@ const App = () => {
     return () => {
       window.removeEventListener('keypress', handleKeyPress);
     };
-  }, [selectedType, searchValue]);
+  }, [selectedType, searchValue]); */
 
   useEffect(() => {
     getFeatured(selectedType);
@@ -77,7 +90,7 @@ const App = () => {
     <div className='container-fluid movie-app'>
       <div className='row d-flex align-items-center mt-4 mb-4'>
         <MovieListHeading heading='TC-Movies' />
-        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
+        <SearchBox handleSearch={handleSearch} />
       </div>
       <div className='bouton-serie-film'>
         <button id='bouton-film' onClick={() => { setSelectedType('movie'); }} disabled={selectedType === 'movie'}>
@@ -93,9 +106,8 @@ const App = () => {
       <h1>Films en favoris</h1>
       {/* Fenêtre de chat */}
       <div>
-      <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} />
-    </div>
-
+        <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} />
+      </div>
     </div>
   );
 };
