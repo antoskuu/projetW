@@ -10,7 +10,6 @@ const AddFavourites = ({ movie, selectedType }) => {
         </div>
       )}
       <div className="add-favourites">
-        <span>Ajouter aux favoris</span>
         <svg
           width='1em'
           height='1em'

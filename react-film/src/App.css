@@ -123,8 +123,10 @@ body {
   }
   
   .add-favourites {
-	margin-top: 20px;
-  }
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
   
   .add-favourites span {
 	margin-right: 5px;
