@@ -15,7 +15,14 @@ const ChatWindow = ({ isChatOpen, setIsChatOpen, messages }) => {
             <span>{message.content}</span>
           </div>
         ))}
+
+            <input
+				className='chat-input form-control'
+				value="test"
+				placeholder='Rechercher...'
+			></input>
       </div>
+
     </div>
   );
 };
