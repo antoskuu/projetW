@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
 import AddFavourites from './AddFavourites';
 
@@ -13,7 +13,16 @@ const getMovieDetails = async ({ selectedType, movieId }) => {
 };
 
 const MovieList = ({ movies, selectedType }) => {
+  useEffect(() => {
+    // Votre logique de rafraîchissement ici
+    // Cette fonction sera exécutée chaque fois que `movies` ou `selectedType` change
+  }, [movies, selectedType]);
   const [selectedMovie, setSelectedMovie] = useState(null);
+  useEffect(() => {
+    // Cette fonction sera exécutée chaque fois que `movies` change
+    setSelectedMovie(null); // Réinitialiser le film sélectionné
+  }, [movies]);
+
 
   const handleMouseOver = async (movieId) => {
     try {

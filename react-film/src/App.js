@@ -5,9 +5,13 @@ import MovieList from './components/MovieList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
 import ChatWindow from './components/ChatWindow';
-
+import AddFavourites from './components/AddFavourites';
 const App = () => {
   const [movies, setMovies] = useState([]);
+  
+  const fav_details = JSON.parse(localStorage.getItem('fav_details'));
+  
+  const [searchValue, setSearchValue] = useState('');
   const [selectedType, setSelectedType] = useState('movie');
   const [isChatOpen, setIsChatOpen] = useState(false);
   const messages = [
@@ -64,9 +68,6 @@ const App = () => {
     }
   };
 
-  const handleSearch = (searchValue) => {
-    getMovieRequest(selectedType, searchValue);
-  };
 
   /* useEffect(() => {
     const handleKeyPress = (event) => {
@@ -81,16 +82,53 @@ const App = () => {
       window.removeEventListener('keypress', handleKeyPress);
     };
   }, [selectedType, searchValue]); */
+  
+
+
+  const effacer_favoris = () => {
+    localStorage.setItem('favourites', JSON.stringify([]));
+    localStorage.setItem('fav_details', JSON.stringify([]));
+  };
+
+  //effacer les favoris au refresh
+  useEffect(() => {
+    const clearFavouritesBeforeUnload = () => {
+      localStorage.setItem('favourites', JSON.stringify([]));
+      localStorage.setItem('fav_details', JSON.stringify([]));
+    };
+  
+    window.addEventListener('beforeunload', clearFavouritesBeforeUnload);
+  
+    return () => {
+      window.removeEventListener('beforeunload', clearFavouritesBeforeUnload);
+    };
+  }, []);
+
+  
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === 'Enter') {
+        getMovieRequest(selectedType, searchValue);
+      }
+    };
+
+    window.addEventListener('keypress', handleKeyPress);
+
+    return () => {
+      window.removeEventListener('keypress', handleKeyPress);
+    };
+  }, [selectedType, searchValue]);
 
   useEffect(() => {
     getFeatured(selectedType);
   }, [selectedType]);
-
   return (
+    
     <div className='container-fluid movie-app'>
+     
       <div className='row d-flex align-items-center mt-4 mb-4'>
         <MovieListHeading heading='TC-Movies' />
-        <SearchBox handleSearch={handleSearch} />
+        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
       </div>
       <div className='bouton-serie-film'>
         <button id='bouton-film' onClick={() => { setSelectedType('movie'); }} disabled={selectedType === 'movie'}>
@@ -99,15 +137,32 @@ const App = () => {
         <button id='bouton-serie' onClick={() => { setSelectedType('tv'); }} disabled={selectedType === 'tv'}>
           Série
         </button>
+        
       </div>
       <div className='row'>
         <MovieList movies={movies} selectedType={selectedType} />
       </div>
-      <h1>Films en favoris</h1>
       {/* Fenêtre de chat */}
       <div>
         <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} />
       </div>
+
+      <div className='row d-flex align-items-center mt-4 mb-4'>
+        <MovieListHeading heading='Mes Favoris' />
+        
+        
+      </div>
+      <div className='bouton-serie-film'>
+        
+        <button id='bouton-effacer' onClick={effacer_favoris}>
+          Effacer
+        </button>
+        
+      </div>
+      <div className='row'>
+        <MovieList movies={fav_details} selectedType={selectedType} />
+      </div>
+
     </div>
   );
 };
