@@ -4,6 +4,10 @@ import './App.css';
 import MovieList from './components/MovieList';
 import SearchBox from './components/SearchBox';
 import ChatWindow from './components/ChatWindow';
+import GamePage from './GamePage';
+
+
+
 
 const App = () => {
   const [movies, setMovies] = useState([]);
@@ -16,6 +20,11 @@ const App = () => {
     { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
   ]);
 
+  const [currentPage, setCurrentPage] = useState('home'); // État pour gérer la page actuelle
+
+  // Fonctions pour changer de page
+  const goToHome = () => setCurrentPage('home');
+  const goToGamePage = () => setCurrentPage('game');
 
   const getFeatured = async (selectedType) => {
     const url = `https://api.themoviedb.org/3/discover/${selectedType}?api_key=f33b828f3a9d89dcc02bf38eaea2b131&sort_by=popularity.desc&language=fr-FR`;
@@ -54,20 +63,57 @@ const App = () => {
     setFavDetails([]); // Mise à jour de l'état local des favoris sans recharger la page
   };
 
-
   useEffect(() => {
     getFeatured(selectedType);
   }, [selectedType]);
 
+  // Contenu de la page en fonction de la page actuelle
+  const getPageContent = () => {
+    switch (currentPage) {
+      case 'home':
+        return (
+          <div className='container-fluid movie-app'>
+         
+            <h1>{selectedType === 'movie' ? 'Les films du moment' : 'Les séries du moment'}</h1>
+          
+            <div className='row'>
+              <MovieList movies={movies} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
+            </div>
+          
+            {/* Fenêtre de chat */}
+            <div>
+              <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} setMessages={setMessages}/>
+            </div>
+          
+            <div className='title'>
+              <h1>Mes favoris</h1>
+            </div>
+          
+            <div className='row'>
+              <MovieList movies={favDetails} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
+            </div>
+          
+            <div className='bouton-serie-film'>
+              <button onClick={effacerFavoris} className='boutton_effacer'>
+                Effacer
+              </button>
+            </div>
+          </div>
+        );
+      case 'game':
+        return <GamePage />; // Affiche la page de jeu
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className='container-fluid movie-app'>
+    <div>
       <header className="header">
-        <div className='title'>
         <h1>TC-Movies</h1>
-        </div>
         <div className="films_series">
-          <button className={`header-button ${selectedType === 'tv' ? 'selected' : ''}`} onClick={() => { setSelectedType('tv'); }}>Séries</button>
-          <button className={`header-button ${selectedType === 'movie' ? 'selected' : ''}`} onClick={() => { setSelectedType('movie'); }}>Films</button>
+          <button className="header-button" onClick={() => { setSelectedType('tv'); }}>Séries</button>
+          <button className="header-button" onClick={() => { setSelectedType('movie'); }}>Films</button>
         </div>
         <SearchBox handleSearch={handleSearch}/>
         <div className="connexion_inscription">
@@ -75,31 +121,10 @@ const App = () => {
           <button className="header-button">Inscription</button>
         </div>
       </header>
-      
-      <h1>{selectedType === 'movie' ? 'Les films du moment' : 'Les séries du moment'}</h1>
-      
-      <div className='row'>
-        <MovieList movies={movies} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
-      </div>
-      
-      {/* Fenêtre de chat */}
-      <div>
-        <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} setMessages={setMessages}/>
-      </div>
-
-      <div className='title'>
-        <h1>Mes favoris</h1>
-      </div>
-      
-      <div className='row'>
-        <MovieList movies={favDetails} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
-      </div>
-      
-      <div className='bouton-serie-film'>
-        <button onClick={effacerFavoris} className='boutton_effacer'>
-          Effacer
-        </button>
-      </div>
+      <button onClick={goToHome}>Accueil</button>
+      <button onClick={goToGamePage}>Game</button>
+      {/* Contenu de la page en fonction de la page actuelle */}
+      {getPageContent()}
     </div>
   );
 };
