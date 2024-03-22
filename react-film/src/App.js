@@ -4,8 +4,6 @@ import './App.css';
 import MovieList from './components/MovieList';
 import SearchBox from './components/SearchBox';
 import ChatWindow from './components/ChatWindow';
-import GamePage from './GamePage';
-
 
 
 
@@ -23,8 +21,14 @@ const App = () => {
   const [currentPage, setCurrentPage] = useState('home'); // État pour gérer la page actuelle
 
   // Fonctions pour changer de page
-  const goToHome = () => setCurrentPage('home');
-  const goToGamePage = () => setCurrentPage('game');
+  const goToHome = () => {
+    setCurrentPage('home');
+    getFeatured(selectedType);
+  };
+  const goToGamePage = () => {
+    setCurrentPage('game');
+    setMovies([]);
+  };
 
   const getFeatured = async (selectedType) => {
     const url = `https://api.themoviedb.org/3/discover/${selectedType}?api_key=f33b828f3a9d89dcc02bf38eaea2b131&sort_by=popularity.desc&language=fr-FR`;
@@ -73,7 +77,7 @@ const App = () => {
       case 'home':
         return (
           <div className='container-fluid movie-app'>
-         
+            <h1>Choisissez vos favoris</h1>
             <h1>{selectedType === 'movie' ? 'Les films du moment' : 'Les séries du moment'}</h1>
           
             <div className='row'>
@@ -101,7 +105,35 @@ const App = () => {
           </div>
         );
       case 'game':
-        return <GamePage />; // Affiche la page de jeu
+        return (
+          <div className='container-fluid movie-app'>
+            <h1>Le jeu !</h1>
+            <h1>{selectedType === 'movie' ? 'Choisissez le premier film' : 'Les séries du moment'}</h1>
+          
+            <div className='row'>
+              <MovieList movies={movies} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
+            </div>
+          
+            {/* Fenêtre de chat */}
+            <div>
+              <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} setMessages={setMessages}/>
+            </div>
+          
+            <div className='title'>
+              <h1>Mes favoris</h1>
+            </div>
+          
+            <div className='row'>
+              <MovieList movies={favDetails} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
+            </div>
+          
+            <div className='bouton-serie-film'>
+              <button onClick={effacerFavoris} className='boutton_effacer'>
+                Effacer
+              </button>
+            </div>
+          </div>
+        );
       default:
         return null;
     }
