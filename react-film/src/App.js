@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import MovieList from './components/MovieList';
+import FavoriteList from './components/FavoriteList';
 import MovieListHeading from './components/MovieListHeading';
 import SearchBox from './components/SearchBox';
 import ChatWindow from './components/ChatWindow';
 import AddFavourites from './components/AddFavourites';
 const App = () => {
   const [movies, setMovies] = useState([]);
-  
   const fav_details = JSON.parse(localStorage.getItem('fav_details'));
-  
+  const fav = JSON.parse(localStorage.getItem('favourites'));
   const [searchValue, setSearchValue] = useState('');
   const [selectedType, setSelectedType] = useState('movie');
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -122,6 +122,9 @@ const App = () => {
   useEffect(() => {
     getFeatured(selectedType);
   }, [selectedType]);
+
+
+
   return (
     
     <div className='container-fluid movie-app'>
@@ -160,7 +163,7 @@ const App = () => {
         
       </div>
       <div className='row'>
-        <MovieList movies={fav_details} selectedType={selectedType} />
+        <FavoriteList movies={fav_details} selectedType={selectedType} />
       </div>
 
     </div>
