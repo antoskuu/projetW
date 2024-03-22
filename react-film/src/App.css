@@ -84,6 +84,7 @@ body {
 
 .movie-details {
 	position: absolute;
+	text-align: center;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -96,10 +97,6 @@ body {
 	/* Retirez le fond noir semi-transparent */
 	background-color: transparent; 
 	color: white; /* Texte en blanc pour une meilleure lisibilité */
-  }
-  
-  .details {
-	text-align: center;
   }
   
   .title {

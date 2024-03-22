@@ -12,13 +12,15 @@ const getMovieDetails = async ({ selectedType, movieId }) => {
   }
 };
 
-const MovieList = ({ movies, selectedType }) => {
+const MovieList = ({ movies, selectedType, favDetails, setFavDetails }) => {
   
   useEffect(() => {
     // Votre logique de rafraîchissement ici
     // Cette fonction sera exécutée chaque fois que `movies` ou `selectedType` change
   }, [movies, selectedType]);
+  
   const [selectedMovie, setSelectedMovie] = useState(null);
+  
   useEffect(() => {
     // Cette fonction sera exécutée chaque fois que `movies` change
     setSelectedMovie(null); // Réinitialiser le film sélectionné
@@ -53,7 +55,7 @@ const MovieList = ({ movies, selectedType }) => {
           />
           {selectedMovie && ( // Afficher les détails uniquement si un film est sélectionné
             <div className='overlay d-flex align-items-center justify-content-center'>
-              <AddFavourites movie={selectedMovie} selectedType={selectedType} />
+              <AddFavourites movie={selectedMovie} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
             </div>
           )}
         </div>
