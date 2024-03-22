@@ -104,6 +104,7 @@ body {
   
   .title {
 	font-size: 24px;
+	margin-right: 20px;
   }
   
   .description {
@@ -169,19 +170,35 @@ body {
   }
 
 
-  .boutton_effacer {
-	background-color: #dc3545;
+
+  .header-button.selected {
+	background-color: #6495ED; /* Couleur de fond plus foncée pour le bouton sélectionné */
+  }
+
+  .header-button {
+	background-color: #007bff;
 	color: #fff;
 	border: none;
 	padding: 10px 20px;
-	margin: 0 10px;
+	border-radius: 5px;
 	cursor: pointer;
+	margin-right: 10px;
+	transition: background-color 0.3s ease; /* Ajoute une transition sur la couleur de fond */
+  }
+  
+  .header-button:hover {
+	background-color: #0056b3; /* Change la couleur de fond lorsque la souris passe dessus */
+  }
+  
+  .header-button:active {
+	background-color: #004085; /* Change la couleur de fond lorsque le bouton est cliqué */
+  }
+  .connexion_inscription {
+	margin-left: auto;
   }
 
-
-  .bouton_effacer{
-	display: flex;
-	justify-content: flex-start;
+  .films_series {
+	margin-right: auto;
   }
 
 
@@ -192,16 +209,11 @@ body {
 	background-color: #000000;
   }
   
-  .header-button {
-	margin-right: 10px;
-	background-color: #007bff;
-	color: #fff;
-	border: none;
-	padding: 10px 20px;
-	cursor: pointer;
-  }
-  
   .search-bar input {
 	padding: 10px;
-	width: 200px;
+	width: 1000px;
+	border-radius: 10px;
+	
   }
+
+  

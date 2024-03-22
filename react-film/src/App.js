@@ -135,16 +135,23 @@ function Header() {
     <div className='container-fluid movie-app'>
     <header className="header">
     <MovieListHeading heading='TC-Movies' />
-      <button className="header-button"onClick={() => { setSelectedType('movie'); }} disabled={selectedType === 'movie'}>Films</button>
-      <button className="header-button"onClick={() => { setSelectedType('tv'); }} disabled={selectedType === 'tv'}>Séries</button>
-      <button className="header-button">Connexion</button>
-      <button className="header-button">Inscription</button>
+    <div className="films_series">
+    <button className={`header-button ${selectedType === 'tv' ? 'selected' : ''}`} onClick={() => { setSelectedType('tv'); }}>Séries</button>
+      <button className={`header-button ${selectedType === 'movie' ? 'selected' : ''}`} onClick={() => { setSelectedType('movie'); }}>Films</button>
+      
+      
+      </div>
       
       <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} className="search-bar"/>
-
+      <div className="connexion_inscription">
+        <button className="header-button">Connexion</button>
+        <button className="header-button">Inscription</button>
+      </div>
     </header>
       
-      <div className='row'>
+    <h1 >
+  {selectedType === 'movie' ? 'Les films du moment' : 'Les séries du moment'}
+</h1>      <div className='row'>
         <MovieList movies={movies} selectedType={selectedType} />
       </div>
       {/* Fenêtre de chat */}
@@ -163,7 +170,7 @@ function Header() {
       </div>
       <div className='bouton-serie-film'>
         
-        <button id='bouton-effacer' onClick={effacer_favoris} className='bouton_effacer'>
+        <button onClick={effacer_favoris} className='boutton_effacer'>
           Effacer
         </button>
         

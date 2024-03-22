@@ -13,7 +13,7 @@ const plusenfavoris = (movie) => {
     fav_details.splice(movieIndex, 1);
     
     
-  } else if (fav.length < 5) {
+  } else  {
     fav.push(movie.id);
     fav_details.push(movie);
   }
