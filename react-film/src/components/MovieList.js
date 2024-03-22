@@ -15,6 +15,8 @@ const getMovieDetails = async ({ selectedType, movieId }) => {
 const MovieList = ({ movies, selectedType }) => {
   
   useEffect(() => {
+    // Votre logique de rafraîchissement ici
+    // Cette fonction sera exécutée chaque fois que `movies` ou `selectedType` change
   }, [movies, selectedType]);
   const [selectedMovie, setSelectedMovie] = useState(null);
   useEffect(() => {

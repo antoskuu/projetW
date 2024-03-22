@@ -167,3 +167,41 @@ body {
   .chat-input {
 	padding: 8px;
   }
+
+
+  .boutton_effacer {
+	background-color: #dc3545;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	margin: 0 10px;
+	cursor: pointer;
+  }
+
+
+  .bouton_effacer{
+	display: flex;
+	justify-content: flex-start;
+  }
+
+
+  .header {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	background-color: #000000;
+  }
+  
+  .header-button {
+	margin-right: 10px;
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+  }
+  
+  .search-bar input {
+	padding: 10px;
+	width: 200px;
+  }

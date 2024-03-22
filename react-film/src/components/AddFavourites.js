@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 
 
 const plusenfavoris = (movie) => {
+  
   let fav = JSON.parse(localStorage.getItem('favourites')) || [];
   let fav_details = JSON.parse(localStorage.getItem('fav_details')) || [];
   const movieIndex = fav.findIndex(favMovie => favMovie === movie.id);
@@ -35,6 +36,8 @@ const AddFavourites = ({ movie, selectedType }) => {
     
     const newFav = plusenfavoris(movie);
     setFav(newFav);
+    window.location.reload();
+  
   };
 
   

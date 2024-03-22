@@ -53,6 +53,22 @@ const App = () => {
     }
   };
 
+
+function Header() {
+  return (
+    <header className="header">
+      <button className="header-button">Films</button>
+      <button className="header-button">Séries</button>
+      <button className="header-button">Connexion</button>
+      <button className="header-button">Inscription</button>
+      <div className="search-bar">
+        <input type="text" placeholder="Recherche..." />
+      </div>
+    </header>
+  );
+}
+
+
   const getMovieRequest = async (selectedType, searchValue) => {
     if (searchValue === '') {
       await getFeatured(selectedType);
@@ -88,21 +104,11 @@ const App = () => {
   const effacer_favoris = () => {
     localStorage.setItem('favourites', JSON.stringify([]));
     localStorage.setItem('fav_details', JSON.stringify([]));
+    window.location.reload();
+  
   };
 
-  //effacer les favoris au refresh
-  useEffect(() => {
-    const clearFavouritesBeforeUnload = () => {
-      localStorage.setItem('favourites', JSON.stringify([]));
-      localStorage.setItem('fav_details', JSON.stringify([]));
-    };
   
-    window.addEventListener('beforeunload', clearFavouritesBeforeUnload);
-  
-    return () => {
-      window.removeEventListener('beforeunload', clearFavouritesBeforeUnload);
-    };
-  }, []);
 
   
   useEffect(() => {
@@ -124,24 +130,20 @@ const App = () => {
   }, [selectedType]);
 
 
-
   return (
     
     <div className='container-fluid movie-app'>
-     
-      <div className='row d-flex align-items-center mt-4 mb-4'>
-        <MovieListHeading heading='TC-Movies' />
-        <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
-      </div>
-      <div className='bouton-serie-film'>
-        <button id='bouton-film' onClick={() => { setSelectedType('movie'); }} disabled={selectedType === 'movie'}>
-          Film
-        </button>
-        <button id='bouton-serie' onClick={() => { setSelectedType('tv'); }} disabled={selectedType === 'tv'}>
-          Série
-        </button>
-        
-      </div>
+    <header className="header">
+    <MovieListHeading heading='TC-Movies' />
+      <button className="header-button"onClick={() => { setSelectedType('movie'); }} disabled={selectedType === 'movie'}>Films</button>
+      <button className="header-button"onClick={() => { setSelectedType('tv'); }} disabled={selectedType === 'tv'}>Séries</button>
+      <button className="header-button">Connexion</button>
+      <button className="header-button">Inscription</button>
+      
+      <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} className="search-bar"/>
+
+    </header>
+      
       <div className='row'>
         <MovieList movies={movies} selectedType={selectedType} />
       </div>
@@ -155,15 +157,16 @@ const App = () => {
         
         
       </div>
+      
+      <div className='row'>
+        <FavoriteList movies={fav_details} selectedType={selectedType} />
+      </div>
       <div className='bouton-serie-film'>
         
-        <button id='bouton-effacer' onClick={effacer_favoris}>
+        <button id='bouton-effacer' onClick={effacer_favoris} className='bouton_effacer'>
           Effacer
         </button>
         
-      </div>
-      <div className='row'>
-        <FavoriteList movies={fav_details} selectedType={selectedType} />
       </div>
 
     </div>
