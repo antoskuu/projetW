@@ -164,6 +164,13 @@ body {
 	transform: translateY(0); /* Faire glisser le contenu vers le haut */
   }
 
+
   .chat-input {
+	position: absolute; /* Position absolue pour la fixer en bas */
+	bottom: 0; /* Alignement en bas */
+	left: 0; /* Alignement à gauche */
+	width: 100%; /* Utilisation de toute la largeur */
 	padding: 8px;
+	border: none; /* Suppression des bordures */
+	color: #ffffff; /* Couleur du texte */
   }

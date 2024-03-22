@@ -10,33 +10,12 @@ const App = () => {
   const [movies, setMovies] = useState([]);
   const [selectedType, setSelectedType] = useState('movie');
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const messages = [
+  const [messages, setMessages] = useState([
     { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
     { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
     { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
-    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
-    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
-    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
-    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
-    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
-    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
-    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
-    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
-    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
-    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
-    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
-    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
-    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
-    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
-    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
-    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
-    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
-    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
-    { pseudo: "AG", content: "Bonjour ! Comment ça va ?" },
-    { pseudo: "AG", content: "Tu regardes quoi comme film en ce moment ?" },
-    { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
-    // Ajoutez plus de messages au besoin
-  ];
+ 
+  ]);
 
   const getFeatured = async (selectedType) => {
     const url = `https://api.themoviedb.org/3/discover/${selectedType}?api_key=f33b828f3a9d89dcc02bf38eaea2b131&sort_by=popularity.desc&language=fr-FR`;
@@ -68,20 +47,6 @@ const App = () => {
     getMovieRequest(selectedType, searchValue);
   };
 
-  /* useEffect(() => {
-    const handleKeyPress = (event) => {
-      if (event.key === 'Enter') {
-        getMovieRequest(selectedType, searchValue);
-      }
-    };
-
-    window.addEventListener('keypress', handleKeyPress);
-
-    return () => {
-      window.removeEventListener('keypress', handleKeyPress);
-    };
-  }, [selectedType, searchValue]); */
-
   useEffect(() => {
     getFeatured(selectedType);
   }, [selectedType]);
@@ -106,7 +71,7 @@ const App = () => {
       <h1>Films en favoris</h1>
       {/* Fenêtre de chat */}
       <div>
-        <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} />
+        <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} setMessages={setMessages} />
       </div>
     </div>
   );

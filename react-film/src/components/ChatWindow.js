@@ -1,10 +1,10 @@
 import React from 'react';
 
-const ChatWindow = ({ isChatOpen, setIsChatOpen, messages }) => {
+const ChatWindow = ({ isChatOpen, setIsChatOpen, messages, setMessages }) => {
   const handleMessage = (event) => {
     if (event.key === 'Enter') {
       const inputValue = event.target.value;
-      console.log(inputValue);
+      setMessages([...messages, { pseudo: 'Utilisateur', content: inputValue }]);
       event.target.value = ''; // Remise à zéro de l'input
     }
   };
