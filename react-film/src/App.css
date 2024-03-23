@@ -38,6 +38,9 @@ body {
 .image-container:hover .overlay {
   opacity: 1;
 }
+
+
+
 .overlay {
 	position: top;
 	background: rgba(0, 0, 0, 0.8);
@@ -125,12 +128,35 @@ body {
     bottom: 0;
     right: 0;
 }
+
+
   
   .add-favourites span {
 	margin-right: 5px;
   }
 
 
+
+  .number-icons {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+  }
+  
+  .number-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border: 2px solid red; /* Couleur du contour */
+	border-radius: 50%; /* Pour créer un cercle */
+	font-size: 16px; /* Taille du texte */
+	color: red; /* Couleur du texte */
+	font-weight: bold; /* Texte en gras */
+	margin: 0 5px; /* Espacement horizontal entre les chiffres */
+  }
+  
   .chat-window {
 	position: fixed;
 	bottom: 0px;
@@ -218,4 +244,9 @@ body {
 	
   }
 
-  
+
+  .big-texts {
+	text-align: center;
+	font-size: 40px; /* Taille de police plus grande */
+	color: #cacaca; /* Couleur de texte */
+  }
