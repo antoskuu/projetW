@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import MovieListChoose from '../components/MovieListChoose';
-
+import generateImage from '../components/requests/generateImage';
 import getFeatured from '../components/requests/getFeatured';
 import getMovieRequest from '../components/requests/getMovieRequest';
 
 const GamePage = ({ selectedType, searchValue }) => {
   const [movies, setMovies] = useState([]);
   const [combinedMovies, setCombinedMovies] = useState([]);
+  const [generatedImage, setGeneratedImage] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -21,8 +22,17 @@ const GamePage = ({ selectedType, searchValue }) => {
   
     fetchData();
   }, [selectedType, searchValue]);
-  
 
+  // Fonction pour générer l'image
+  const handleGenerateImage = async () => {
+    if (combinedMovies.length === 2) {
+      const imageUrl = await generateImage(combinedMovies[0].title, combinedMovies[1].title);
+      setGeneratedImage(imageUrl);
+    } else {
+      console.log("Veuillez sélectionner deux films pour fusionner.");
+    }
+  };
+  
   return (
     <div className='container-fluid movie-app'>
       <h1 className="big-texts">Choisissez deux films à combiner</h1>
@@ -68,13 +78,18 @@ const GamePage = ({ selectedType, searchValue }) => {
         </button>
       </div>
       <div className='bouton-serie-film'>
-        <button  className='boutton_effacer'>
+        <button onClick={handleGenerateImage} className='boutton_effacer'>
           FUSIOOOOOOOON
         </button>
       </div>
+      {generatedImage && (
+        <div>
+          <h1 className="big-texts">Image Fusionnée :</h1>
+          <img src={generatedImage} alt="Image fusionnée" />
+        </div>
+      )}
     </div>
   );
-  
 };
 
 export default GamePage;
