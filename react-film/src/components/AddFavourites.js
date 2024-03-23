@@ -47,9 +47,18 @@ const AddFavourites = ({ movie, selectedType, favDetails, setFavDetails }) => {
     }
   };
 
+  const getFormattedDate = (dateString) => {
+    const monthNames = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"];
+    const date = new Date(dateString);
+    const month = monthNames[date.getMonth()];
+    const year = date.getFullYear();
+    return `${month} ${year}`;
+  };
+
   return (
     <div>
       <div className="movie-details">
+      <h3 className='date'>{getFormattedDate(movie.release_date)}</h3>
         <h2 className="title">{selectedType === "movie" ? movie.title : movie.name}</h2>
         <p className="description">{movie.overview}</p>
 
@@ -58,6 +67,7 @@ const AddFavourites = ({ movie, selectedType, favDetails, setFavDetails }) => {
         {movie.vote_average.toFixed(1)}
       </div>
     )}
+    
       </div>
       <div className="add-favourites" onClick={handleFavourite}>
         {isFavourite ? (
