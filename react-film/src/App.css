@@ -3,6 +3,35 @@ body {
 	color: #ffffff;
 }
 
+
+.film-container {
+	display: flex;
+	justify-content: space-around; /* Pour aligner les colonnes */
+  }
+  
+  .film-column {
+	width: 45%; /* Largeur de chaque colonne */
+  }
+  
+  .movie-container {
+	margin-bottom: 20px; /* Espacement entre les films */
+	display: flex;
+  }
+  
+  .image-container {
+	width: 100%; /* Pour que l'image occupe toute la largeur de son conteneur */
+  }
+  
+  .movie-container p {
+	margin-left:20px;
+	max-width: 300px; /* Limite de largeur pour le paragraphe */
+	max-height: 430px; /* Limite de largeur pour le paragraphe */
+	font-size: 18px; /* Augmente la taille de la police */
+	overflow: hidden;
+  }
+  
+
+
 .movie-app > .row {
 	overflow-x: auto;
 	flex-wrap: nowrap;

@@ -1,66 +1,53 @@
 import React, { useState, useEffect } from 'react';
-import MovieListChoose from '../components/MovieListChoose';
+import '../App.css';
+import AddChoosed from './AddChoosed';
+import getMovieDetails from './requests/getMovieDetails';
 
-import getFeatured from '../components/requests/getFeatured';
-import getMovieRequest from '../components/requests/getMovieRequest';
-
-const GamePage = ({ selectedType, searchValue }) => {
-  const [movies, setMovies] = useState([]);
-  const [combinedMovies, setCombinedMovies] = useState([]);
-
+const MovieListChoose = ({ movies, selectedType, combinedMovies, setCombinedMovies}) => {
+  
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  
   useEffect(() => {
-    const fetchData = async () => {
-      if (searchValue === '') {
-        const featuredMovies = await getFeatured(selectedType);
-        setMovies(featuredMovies);
-      } else {
-        const searchedMovies = await getMovieRequest(selectedType, searchValue);
-        setMovies(searchedMovies);
-      }
-    };
-  
-    fetchData();
-  }, [selectedType, searchValue]);
-  
+    setSelectedMovie(null); // Réinitialiser le film sélectionné
+  }, [movies]);
+
+
+  const handleMouseOver = async (movieId) => {
+    try {
+      const movieData = await getMovieDetails({ selectedType, movieId });
+      setSelectedMovie(movieData);
+    } catch (error) {
+      console.error('Error fetching movie details:', error);
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setSelectedMovie(null);
+  };
 
   return (
-    <div className='container-fluid movie-app'>
-
-      <h1 className="big-texts">Choisissez deux films à combiner</h1>
-
-
-      <h1 className="big-texts">{selectedType === 'movie' ? (searchValue !== '' ? `Résultats de films contenant : ${searchValue}` : 'Les films du moment') : (searchValue !== '' ? `Résultats de séries contenant : ${searchValue}` : 'Les séries du moment')}</h1>
-      <div className='row'>
-        <MovieListChoose movies={movies} selectedType={selectedType} combinedMovies={combinedMovies} setCombinedMovies={setCombinedMovies}/>
-      </div>
-
-      <h1 className="big-texts">Les films sélectionnés :</h1>
-
-      <h2>Film 1 : {selectedType === 'movie' ? (combinedMovies[0] ? combinedMovies[0].title : 'A choisir') : (combinedMovies[0] ? combinedMovies[0].name : 'A choisir')}</h2>
-      {combinedMovies[0] && (
-        <div>
+    <React.Fragment>
+      {movies.map((movie, index) => (
+        <div
+          className='image-container d-flex justify-content-start m-3'
+          key={index}
+          onMouseOver={() => handleMouseOver(movie.id)}
+          onMouseLeave={handleMouseLeave}
+        >
           <img
-            className='image-container'
-            src={`https://image.tmdb.org/t/p/original${combinedMovies[0].poster_path}`}
-            alt='Film 1'
+            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+            alt={selectedType === "movie" ? movie.title : movie.name}
           />
-          <p>{combinedMovies[0].description}</p>
+          {selectedMovie && ( // Afficher les détails uniquement si un film est sélectionné
+            <div className='overlay d-flex align-items-center justify-content-center'>
+              <AddChoosed movie={selectedMovie} selectedType={selectedType} combinedMovies={combinedMovies} setCombinedMovies={setCombinedMovies} />
+            </div>
+          )}
         </div>
-      )}
-      <h2>Film 2 : {selectedType === 'movie' ? (combinedMovies[1] ? combinedMovies[1].title : 'A choisir') : (combinedMovies[1] ? combinedMovies[1].name : 'A choisir')}</h2>
-      {combinedMovies[1] && (
-        <div>
-          <img
-            src={`https://image.tmdb.org/t/p/original${combinedMovies[1].poster_path}`}
-            alt='Film 2'
-            className='image-container'
-          />
-          <p>{combinedMovies[1].description}</p>
-        </div>
-      )}
-
-    </div>
+      ))}
+    </React.Fragment>
   );
 };
 
-export default GamePage;
+export default MovieListChoose;
+
