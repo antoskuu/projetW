@@ -36,7 +36,7 @@ const App = () => {
   return (
     <div>
       <header className="header">
-        <h1>TC-Movies</h1>
+        <div className='title'>TC-Movies</div>
         <div className="films_series">
           <button className="header-button" onClick={() => { setSelectedType('tv'); }}>Séries</button>
           <button className="header-button" onClick={() => { setSelectedType('movie'); }}>Films</button>

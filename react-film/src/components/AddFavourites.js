@@ -37,11 +37,24 @@ const AddFavourites = ({ movie, selectedType, favDetails, setFavDetails }) => {
     setFav(newFav);
   };
 
+  const getNoteColor = (note) => {
+    if (note >= 7) {
+      return 'green';
+    } else if (note >= 5) {
+      return 'orange';
+    } else {
+      return 'red';
+    }
+  };
+
   return (
     <div>
       <div className="movie-details">
         <h2 className="title">{selectedType === "movie" ? movie.title : movie.name}</h2>
         <p className="description">{movie.overview}</p>
+      <div className='note-circle' style={{backgroundColor: getNoteColor(movie.vote_average)}}>
+        {movie.vote_average.toFixed(1)}
+      </div>
       </div>
       <div className="add-favourites" onClick={handleFavourite}>
         {isFavourite ? (
