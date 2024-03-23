@@ -18,8 +18,8 @@ body {
 	display: flex;
   }
   
-  .image-container {
-	width: 100%; /* Pour que l'image occupe toute la largeur de son conteneur */
+  .result-image img {
+	border-radius: 20px;
   }
   
   .movie-container p {

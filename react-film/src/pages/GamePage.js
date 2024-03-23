@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import MovieListChoose from '../components/MovieListChoose';
 import generateImage from '../components/requests/generateImage';
+import generateSynopsis from '../components/requests/generateSynopsis';
 import getFeatured from '../components/requests/getFeatured';
 import getMovieRequest from '../components/requests/getMovieRequest';
 
@@ -8,6 +9,7 @@ const GamePage = ({ selectedType, searchValue }) => {
   const [movies, setMovies] = useState([]);
   const [combinedMovies, setCombinedMovies] = useState([]);
   const [generatedImage, setGeneratedImage] = useState('');
+  const [generatedSynopsis, setGeneratedSynopsis] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,15 +26,17 @@ const GamePage = ({ selectedType, searchValue }) => {
   }, [selectedType, searchValue]);
 
   // Fonction pour générer l'image
-  const handleGenerateImage = async () => {
+  const handleGenerate = async () => {
     if (combinedMovies.length === 2) {
-      const imageUrl = await generateImage(combinedMovies[0].title, combinedMovies[1].title);
+      const imageUrl = await generateImage(`${selectedType === 'movie' ? combinedMovies[0].title : combinedMovies[0].name} ${selectedType === 'movie' ? combinedMovies[1].title : combinedMovies[1].name}`);
       setGeneratedImage(imageUrl);
+      const synopsis = await generateSynopsis(`${selectedType === 'movie' ? combinedMovies[0].title : combinedMovies[0].name} ${selectedType === 'movie' ? combinedMovies[1].title : combinedMovies[1].name}`);
+      setGeneratedSynopsis(synopsis)
     } else {
       console.log("Veuillez sélectionner deux films pour fusionner.");
     }
   };
-  
+
   return (
     <div className='container-fluid movie-app'>
       <h1 className="big-texts">Choisissez deux films à combiner</h1>
@@ -78,16 +82,23 @@ const GamePage = ({ selectedType, searchValue }) => {
         </button>
       </div>
       <div className='bouton-serie-film'>
-        <button onClick={handleGenerateImage} className='boutton_effacer'>
+        <button onClick={handleGenerate} className='boutton_effacer'>
           FUSIOOOOOOOON
         </button>
       </div>
+      <h1 className="big-texts">Oeuvre fusionnée :</h1>
+      <div className='movie-container'>
       {generatedImage && (
         <div>
-          <h1 className="big-texts">Image Fusionnée :</h1>
-          <img src={generatedImage} alt="Image fusionnée" />
+          <img src={generatedImage} alt="Image fusionnée" className='result-image'/>
         </div>
       )}
+      {generatedSynopsis && (
+        <div>
+          <p>{generatedSynopsis}</p>
+        </div>
+      )}
+      </div>
     </div>
   );
 };
