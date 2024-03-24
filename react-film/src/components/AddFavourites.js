@@ -21,7 +21,11 @@ const plusEnFavoris = (movie, fav, favDetails, setFavDetails) => {
 
 const AddFavourites = ({ movie, selectedType, favDetails, setFavDetails }) => {
   const [fav, setFav] = useState(() => JSON.parse(localStorage.getItem('favourites')) || []);
-
+  const handleClick = (event) => {
+    handleFavourite();
+    event.stopPropagation();
+    // Code pour ajouter aux favoris...
+  };
   useEffect(() => {
     setFav(JSON.parse(localStorage.getItem('favourites')) || []);
   }, []);
@@ -69,7 +73,7 @@ const AddFavourites = ({ movie, selectedType, favDetails, setFavDetails }) => {
     )}
     
       </div>
-      <div className="add-favourites" onClick={handleFavourite}>
+      <div className="add-favourites" onClick={handleClick}>
         {isFavourite ? (
           <svg
             width='2em'

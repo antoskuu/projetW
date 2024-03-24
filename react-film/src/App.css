@@ -428,3 +428,20 @@ body {
 	width: 200px;
 	height: auto;
   }
+
+  .invisible-button {
+	border: none;
+	background: transparent;
+	box-shadow: none;
+	color: inherit;
+	width: 0px; /* Ajustez à la largeur désirée */
+  height: 0px; /* Ajustez à la hauteur désirée */
+  padding: 10px; 
+  overflow: hidden;
+
+  }
+  
+  .invisible-button:focus,
+  .invisible-button:hover {
+	outline: none;
+  }

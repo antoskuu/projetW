@@ -82,8 +82,8 @@ if (showInfoPage && cliquedMovie) {
           
           {selectedMovie && ( // Afficher les détails uniquement si un film est sélectionné
             <button
-              className='overlay d-flex align-items-center justify-content-center'
-              onClick={() => handleClick(selectedMovie.id)}>
+            className='invisible-button overlay d-flex align-items-center justify-content-center'
+            onClick={() => handleClick(selectedMovie.id)}>
             <div className='overlay d-flex align-items-center justify-content-center'>
               <AddFavourites movie={selectedMovie} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
             </div>
