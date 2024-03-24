@@ -58,7 +58,7 @@ const AddFavourites = ({ movie, selectedType, favDetails, setFavDetails }) => {
   return (
     <div>
       <div className="movie-details">
-      <h3 className='date'>{getFormattedDate(movie.release_date)}</h3>
+        {movie.release_date && <h3 className='date'>{getFormattedDate(movie.release_date)}</h3>}
         <h2 className="title">{selectedType === "movie" ? movie.title : movie.name}</h2>
         <p className="description">{movie.overview}</p>
 
