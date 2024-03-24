@@ -40,7 +40,7 @@ const App = () => {
   return (
     <div>
       <header className="header">
-        <div className='title'>TC-Movies</div>
+      <button className="title"onClick={goToHome}>TC-Movies</button>
 
 <div className="films_series">
   
