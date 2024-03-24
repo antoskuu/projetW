@@ -3,7 +3,7 @@ import MovieListFav from '../components/MovieListFav';
 import getFeatured from '../components/requests/getFeatured';
 import getMovieRequest from '../components/requests/getMovieRequest';
 
-const HomePage = ({ selectedType, searchValue }) => {
+const HomePage = ({ selectedType, changeSelectedType, searchValue }) => {
   const [movies, setMovies] = useState([]);
   const [favDetails, setFavDetails] = useState(JSON.parse(localStorage.getItem('fav_details')) || []);
 
@@ -31,7 +31,50 @@ const HomePage = ({ selectedType, searchValue }) => {
 
   return (
     <div className='container-fluid movie-app'>
-      <h1 className="big-texts">{selectedType === 'movie' ? (searchValue !== '' ? `Résultats de films contenant : ${searchValue}` : 'Les films du moment') : (searchValue !== '' ? `Résultats de séries contenant : ${searchValue}` : 'Les séries du moment')}</h1>
+      
+      {searchValue && (
+        <h1 className="big-texts">
+  Résultats de 
+  <select 
+  value={selectedType}
+  onChange={(e) => changeSelectedType(e.target.value)}
+  style={{
+    backgroundColor: '#282828',
+    border: 'none',
+    color: '#ffffff',
+    borderRadius: '5px',
+    padding: '5px 10px',
+    margin: '0 10px',
+  }}
+>
+  <option value="movie">films</option>
+  <option value="tv">séries</option>
+</select>
+  contenant "{searchValue}"
+</h1>
+      )}
+
+{!searchValue && (
+        <h1 className="big-texts">
+          Les
+          <select 
+  value={selectedType}
+  onChange={(e) => changeSelectedType(e.target.value)}
+  style={{
+    backgroundColor: '#282828',
+    border: 'none',
+    color: '#ffffff',
+    borderRadius: '5px',
+    padding: '5px 10px',
+    margin: '0 10px',
+  }}
+>
+  <option value="movie">films</option>
+  <option value="tv">séries</option>
+</select>
+          du moment        </h1>
+      )}
+
       <div className='row'>
         <MovieListFav movies={movies} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
       </div>

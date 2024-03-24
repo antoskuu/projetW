@@ -17,6 +17,10 @@ const App = () => {
     { pseudo: "GF", content: "J'ai entendu parler d'un nouveau film qui est génial !" },
   ]);
   // Fonctions pour changer de page
+
+  const changeSelectedType = (newType) => {
+    setSelectedType(newType);
+  };
   const goToHome = () => {
     setCurrentPage('home');
   };
@@ -37,22 +41,41 @@ const App = () => {
     <div>
       <header className="header">
         <div className='title'>TC-Movies</div>
-        <div className="films_series">
-          <button className="header-button" onClick={() => { setSelectedType('tv'); }}>Séries</button>
-          <button className="header-button" onClick={() => { setSelectedType('movie'); }}>Films</button>
-        </div>
+
+<div className="films_series">
+  
+    
+</div>
+<div className="dropdown">
+  <button className="header-button"onClick={goToHome}>Accueil</button>
+  <div className="dropdown-content">
+    <button className="header-button" onClick={() => {goToHome(); setSelectedType('movie');}}>Films</button>
+    <button className="header-button" onClick={() => {goToHome(); setSelectedType('tv');}}>Séries</button>
+  </div>
+</div>
+
+<div className="dropdown">
+  <button className="header-button"onClick={goToGamePage}>Jeux</button>
+  <div className="dropdown-content">
+  <button className="header-button" onClick={goToGamePage}>Fusion</button>
+  </div>
+</div>
+
+
+        
         <SearchBox handleSearch={handleSearch}/>
         <div className="connexion_inscription">
           <button className="header-button">Connexion</button>
           <button className="header-button">Inscription</button>
         </div>
       </header>
-      <button onClick={goToHome}>Accueil</button>
-      <button onClick={goToGamePage}>Jeu</button>
-      {currentPage === 'home' ? <HomePage selectedType={selectedType} searchValue={searchValue}/> : <GamePage selectedType={selectedType} searchValue={searchValue}/>}
+      
+
+      {currentPage === 'home' ? <HomePage selectedType={selectedType} changeSelectedType={changeSelectedType} searchValue={searchValue}/> : <GamePage selectedType={selectedType} searchValue={searchValue}/>}
       <div>
         <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} setMessages={setMessages}/>
       </div>
+      
     </div>
   );
 };
