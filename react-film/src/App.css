@@ -1,5 +1,5 @@
 body {
-	background: #000000;
+	background: radial-gradient(ellipse at bottom, #0d1218 0%, #000000 100%);
 	color: #ffffff;
 }
 
@@ -107,21 +107,6 @@ body {
 	transition: background-color 0.3s ease;
 }
   
-#bouton-serie:disabled,
-#bouton-film:disabled {
-	background-color: #6c757d;
-	cursor: default;
-}
-  
-#bouton-serie:focus,
-#bouton-film:focus {
-	outline: none;
-}
-  
-#bouton-serie:focus:not(:disabled),
-#bouton-film:focus:not(:disabled) {
-	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
 
 .movie-details {
 	position: absolute;
@@ -273,7 +258,6 @@ body {
 	display: flex;
 	justify-content: space-between;
 	padding: 20px;
-	background-color: #000000;
   }
   
   .search-bar input {
@@ -445,3 +429,4 @@ body {
   .invisible-button:hover {
 	outline: none;
   }
+

@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import '../FireButton.css'
 import MovieListChoose from '../components/MovieListChoose';
 import generateImage from '../components/requests/generateImage';
 import generateSynopsis from '../components/requests/generateSynopsis';
 import getFeatured from '../components/requests/getFeatured';
 import getMovieRequest from '../components/requests/getMovieRequest';
+import ExplosiveButton from '../components/ExplosiveButton';
+
+
+
 
 const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
   const [movies, setMovies] = useState([]);
@@ -44,6 +49,13 @@ const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
       console.log("Veuillez sélectionner deux films pour fusionner.");
     }
   };
+
+
+  useEffect(() => {
+    // Initialisez le bouton explosif après le rendu du composant
+    const fusionButton = new ExplosiveButton("#fusionButton");
+  }, []); // Assurez-vous de ne l'initialiser qu'une seule fois après le rendu initial
+  
 
   return (
     <div className='container-fluid movie-app'>
@@ -139,12 +151,8 @@ const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
           Effacer
         </button>
       </div>
-      <div className='bouton-serie-film'>
-        <button onClick={() => {handleGenerate();if (combinedMovies.length === 2)setIsLoading(true); }} className='boutton_effacer'>
-          FUSION
-        </button>
-        
-
+      <div className='bouton-fusion'>
+        <button onClick={() => {handleGenerate();if (combinedMovies.length === 2)setIsLoading(true); }} type="fire-button" id="fusionButton">FUSION</button>
       </div>
       <h1 className="big-texts">Oeuvre fusionnée :</h1>
       <div className='movie-container'>
@@ -154,7 +162,7 @@ const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
 ) : (
   generatedImage && (
     <div className='result-container'>
-      <img src={generatedImage} alt="Image fusionnée" className='result-image'/>
+      <img src={generatedImage} alt="Fusionnée" className='result-image'/>
 
       <p>{generatedSynopsis}</p>
     </div>

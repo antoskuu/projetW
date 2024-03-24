@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import MovieListFav from '../components/MovieListFav';
-import getMovieDetails from '../components/requests/getMovieDetails';
+import React from 'react';
 
 const InfoPage = ({ movie, setShowInfoPage }) => {
       console.log(movie)

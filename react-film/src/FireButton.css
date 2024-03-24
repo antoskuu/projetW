@@ -1,0 +1,110 @@
+.bouton-fusion {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.bouton-fusion button {
+    background-color: orange; /* Couleur de départ */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 2s ease-in-out; /* Transition pour la couleur de fond */
+    animation: colorOscillation 2s infinite;
+}
+
+.bouton-fusion button:hover {
+    animation: scaleAndShake 0.3s ease forwards; /* Animation pour grossir puis trembler */
+}
+
+@keyframes colorOscillation {
+    0%, 100% {
+        background-color: orange; /* Couleur de départ */
+    }
+    50% {
+        background-color: red; /* Couleur à mi-chemin */
+    }
+}
+
+@keyframes scaleAndShake {
+    50% {
+        transform: scale(2); /* Grossissement 2x */
+    }
+    70% {
+        transform: scale(2) rotate(-5deg); /* Légère rotation vers la gauche */
+    }
+    80% {
+        transform: scale(2) rotate(5deg); /* Légère rotation vers la droite */
+    }
+    90% {
+        transform: scale(2) rotate(-5deg); /* Légère rotation vers la gauche */
+    }
+    100% {
+        transform: scale(2) rotate(0deg); /* Retour à la position initiale */
+    }
+}
+
+
+
+fire-button {
+	background: #ff5100;
+	border-radius: 0.2em;
+	color: #fff;
+	cursor: pointer;
+	margin: auto;
+	padding: 0.5em 1em;
+	transition: background .15s linear, color .15s linear;
+  }
+  
+  fire-button:focus, fire-button:hover {
+	background: #da2a0b;
+  }
+  
+  fire-button:focus {
+	outline: transparent;
+  }
+  
+  fire-button::-moz-focus-inner {
+	border: 0;
+  }
+  
+  fire-button:active {
+	transform: translateY(0.1em);
+  }
+  
+  .exploding, .exploding:focus, .exploding:hover {
+	background: transparent;
+  }
+  
+  .exploding {
+	pointer-events: none;
+	position: relative;
+	will-change: transform;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+  }
+  
+  .particle {
+	position: absolute;
+	top: 0;
+	left: 0;
+  }
+  
+  .particle--debris {
+	background: #f70f0f;
+  }
+  
+  .particle--fire {
+	border-radius: 50%;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+	body {
+	  background: #17181c;
+	}
+  }
+  

@@ -3,10 +3,8 @@ import '../App.css';
 import AddFavourites from './AddFavourites';
 import getMovieDetails from './requests/getMovieDetails';
 import InfoPage from '../pages/InfoPage';
-import GamePage from '../pages/GamePage';
 
 const MovieListFav = ({ movies, selectedType, favDetails, setFavDetails }) => {
-  const [currentPage, setCurrentPage] = useState('home');
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [cliquedMovie, setCliquedMovie] = useState(null);
   const [showInfoPage, setShowInfoPage] = useState(false);
