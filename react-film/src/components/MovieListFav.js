@@ -40,11 +40,31 @@ const MovieListFav = ({ movies, selectedType, favDetails, setFavDetails }) => {
             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
             alt={selectedType === "movie" ? movie.title : movie.name}
           />
+          
+          {favDetails.some(favMovie => favMovie.id === movie.id) && (
+          <div className="add-favourites" ><svg
+            width='2em'
+            height='2em'
+            viewBox='0 0 24 24'
+            className='bi bi-heart-fill'
+            fill='red'
+            overflow='visible'
+            xmlns='http://www.w3.org/2000/svg'
+          >
+            <path
+              fillRule='evenodd'
+              d='M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z'
+            />
+          </svg>
+          </div>
+      )}
+          
           {selectedMovie && ( // Afficher les détails uniquement si un film est sélectionné
             <div className='overlay d-flex align-items-center justify-content-center'>
               <AddFavourites movie={selectedMovie} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
             </div>
           )}
+          
         </div>
       ))}
     </React.Fragment>
