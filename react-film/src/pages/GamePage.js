@@ -10,7 +10,14 @@ const GamePage = ({ selectedType, searchValue }) => {
   const [combinedMovies, setCombinedMovies] = useState([]);
   const [generatedImage, setGeneratedImage] = useState('');
   const [generatedSynopsis, setGeneratedSynopsis] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    if (generatedImage && generatedSynopsis) {
+      setIsLoading(false);
+    }
+  }, [generatedImage, generatedSynopsis]);
+  
   useEffect(() => {
     const fetchData = async () => {
       if (searchValue === '') {
@@ -32,6 +39,7 @@ const GamePage = ({ selectedType, searchValue }) => {
       setGeneratedImage(imageUrl);
       const synopsis = await generateSynopsis(`${selectedType === 'movie' ? combinedMovies[0].title : combinedMovies[0].name} ${selectedType === 'movie' ? combinedMovies[1].title : combinedMovies[1].name}`);
       setGeneratedSynopsis(synopsis)
+      setIsLoading(true);
     } else {
       console.log("Veuillez sélectionner deux films pour fusionner.");
     }
@@ -82,23 +90,29 @@ const GamePage = ({ selectedType, searchValue }) => {
         </button>
       </div>
       <div className='bouton-serie-film'>
-        <button onClick={handleGenerate} className='boutton_effacer'>
+        <button onClick={() => {handleGenerate();if (combinedMovies.length === 2)setIsLoading(true); }} className='boutton_effacer'>
           FUSIOOOOOOOON
         </button>
       </div>
       <h1 className="big-texts">Oeuvre fusionnée :</h1>
       <div className='movie-container'>
-      {generatedImage && (
-        <div>
-          <img src={generatedImage} alt="Image fusionnée" className='result-image'/>
-        </div>
-      )}
-      {generatedSynopsis && (
-        <div>
-          <p>{generatedSynopsis}</p>
-        </div>
-      )}
+
+  {isLoading ? (
+    <div>Loading...</div> // Remplacez ceci par votre animation de chargement
+  ) : (
+    generatedImage && (
+      
+      <div>
+        <img src={generatedImage} alt="Image fusionnée" className='result-image'/>
       </div>
+    )
+  )}
+  {generatedSynopsis && (
+    <div>
+      <p>{generatedSynopsis}</p>
+    </div>
+  )}
+</div>
     </div>
   );
 };

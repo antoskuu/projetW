@@ -36,6 +36,7 @@ const HomePage = ({ selectedType, changeSelectedType, searchValue }) => {
         <h1 className="big-texts">
   Résultats de 
   <select 
+  className='select-type'
   value={selectedType}
   onChange={(e) => changeSelectedType(e.target.value)}
   style={{
@@ -58,6 +59,8 @@ const HomePage = ({ selectedType, changeSelectedType, searchValue }) => {
         <h1 className="big-texts">
           Les
           <select 
+
+  className='select-type'
   value={selectedType}
   onChange={(e) => changeSelectedType(e.target.value)}
   style={{

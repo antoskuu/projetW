@@ -18,7 +18,7 @@ body {
 	display: flex;
   }
   
-  .result-image img {
+  .result-image {
 	border-radius: 20px;
   }
   
@@ -343,4 +343,28 @@ body {
 	display: block;
   }
   
- 
+.select-type {
+	visibility: visible;
+	position: relative;
+	background-color: #282828;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	opacity: 1; /* Rend le select complètement opaque */
+	transform: scaleY(1); /* Donne au select sa hauteur normale */
+	transform-origin: top;
+	transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+}
+
+.dropdown:hover .select-type {
+	visibility: visible;
+	opacity: 1;
+	transform: scaleY(1);
+}
+
+.select-type option {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
