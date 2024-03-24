@@ -21,6 +21,14 @@ body {
   .result-image {
 	border-radius: 20px;
   }
+.result-container {
+	display: flex;
+	align-items: center; /* Aligne verticalement les éléments au centre */
+}
+
+.result-image {
+	margin-right: 20px; /* Ajoute un espace à droite de l'image */
+}
   
   .movie-container p {
 	margin-left:20px;
@@ -85,6 +93,7 @@ body {
 .bouton-serie-film {
 	text-align: center;
 	margin-bottom: 20px;
+	
 }
   
 .bouton-serie-film button {
@@ -368,3 +377,43 @@ body {
 	text-decoration: none;
 	display: block;
 }
+
+.h1-button-style {
+	display: inline-block;
+	border: 2px solid #000; /* Changez la couleur de la bordure selon vos préférences */
+	padding: 10px 20px;
+	text-decoration: none;
+	background-color: transparent;
+	color: #fff; /* Changez la couleur du texte selon vos préférences */
+	cursor: pointer;
+	font-size: 2em; /* Taille de police pour h1 */
+	transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  
+  .h1-button-style:hover {
+	display: inline-block;
+	border: 2px solid #fff; 
+	color: #fff; /* Changez la couleur du texte au survol selon vos préférences */
+	border-color: #fff; /* Changez la couleur de la bordure au survol selon vos préférences */
+  }
+
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+  
+  .loading-spinner {
+	position: absolute;
+	justify-content: center;
+	border: 5px solid #f3f3f3;
+	border-top: 5px solid #3498db;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	animation: spin 2s linear infinite;
+	
+  }
+  .button-spinner-container {
+	display: flex;
+	justify-content: center; /* Centre le conteneur horizontalement */
+  }

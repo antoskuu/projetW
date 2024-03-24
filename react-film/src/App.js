@@ -40,7 +40,7 @@ const App = () => {
   return (
     <div>
       <header className="header">
-      <button className="title"onClick={goToHome}>TC-Movies</button>
+      <button className="h1-button-style"onClick={goToHome}>TC-Movies</button>
 
 <div className="films_series">
   
@@ -71,7 +71,7 @@ const App = () => {
       </header>
       
 
-      {currentPage === 'home' ? <HomePage selectedType={selectedType} changeSelectedType={changeSelectedType} searchValue={searchValue}/> : <GamePage selectedType={selectedType} searchValue={searchValue}/>}
+      {currentPage === 'home' ? <HomePage selectedType={selectedType} changeSelectedType={changeSelectedType} searchValue={searchValue}/> : <GamePage selectedType={selectedType} changeSelectedType={changeSelectedType} searchValue={searchValue}/>}
       <div>
         <ChatWindow isChatOpen={isChatOpen} setIsChatOpen={setIsChatOpen} messages={messages} setMessages={setMessages}/>
       </div>

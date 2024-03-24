@@ -5,7 +5,7 @@ import generateSynopsis from '../components/requests/generateSynopsis';
 import getFeatured from '../components/requests/getFeatured';
 import getMovieRequest from '../components/requests/getMovieRequest';
 
-const GamePage = ({ selectedType, searchValue }) => {
+const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
   const [movies, setMovies] = useState([]);
   const [combinedMovies, setCombinedMovies] = useState([]);
   const [generatedImage, setGeneratedImage] = useState('');
@@ -47,10 +47,60 @@ const GamePage = ({ selectedType, searchValue }) => {
 
   return (
     <div className='container-fluid movie-app'>
-      <h1 className="big-texts">Choisissez deux films à combiner</h1>
-  
-      <h1 className="big-texts">{selectedType === 'movie' ? (searchValue !== '' ? `Résultats de films contenant : ${searchValue}` : 'Les films du moment') : (searchValue !== '' ? `Résultats de séries contenant : ${searchValue}` : 'Les séries du moment')}</h1>
-      <div className='row'>
+
+
+
+{!searchValue && (
+        <h1 className="big-texts">
+          Choisissez deux
+          <select 
+
+  className='select-type'
+  value={selectedType}
+  onChange={(e) => changeSelectedType(e.target.value)}
+  style={{
+    backgroundColor: '#282828',
+    border: 'none',
+    color: '#ffffff',
+    borderRadius: '5px',
+    padding: '5px 10px',
+    margin: '0 10px',
+  }}
+>
+  <option value="movie">films</option>
+  <option value="tv">séries</option>
+</select>
+          à combiner        </h1>
+      )}
+
+
+      {searchValue && (
+        <h1 className="big-texts">
+  Résultats de 
+  <select 
+  className='select-type'
+  value={selectedType}
+  onChange={(e) => changeSelectedType(e.target.value)}
+  style={{
+    backgroundColor: '#282828',
+    border: 'none',
+    color: '#ffffff',
+    borderRadius: '5px',
+    padding: '5px 10px',
+    margin: '0 10px',
+  }}
+>
+  <option value="movie">films</option>
+  <option value="tv">séries</option>
+</select>
+  contenant "{searchValue}"
+</h1>
+
+
+
+
+      )}
+       <div className='row'>
         <MovieListChoose movies={movies} selectedType={selectedType} combinedMovies={combinedMovies} setCombinedMovies={setCombinedMovies}/>
       </div>
   
@@ -91,27 +141,28 @@ const GamePage = ({ selectedType, searchValue }) => {
       </div>
       <div className='bouton-serie-film'>
         <button onClick={() => {handleGenerate();if (combinedMovies.length === 2)setIsLoading(true); }} className='boutton_effacer'>
-          FUSIOOOOOOOON
+          FUSION
         </button>
+        
+
       </div>
       <h1 className="big-texts">Oeuvre fusionnée :</h1>
       <div className='movie-container'>
 
-  {isLoading ? (
-    <div>Loading...</div> // Remplacez ceci par votre animation de chargement
-  ) : (
-    generatedImage && (
-      
-      <div>
-        <img src={generatedImage} alt="Image fusionnée" className='result-image'/>
-      </div>
-    )
-  )}
-  {generatedSynopsis && (
-    <div>
+      {isLoading ? (
+  <div className="loading-spinner"></div>
+) : (
+  generatedImage && (
+    <div className='result-container'>
+      <img src={generatedImage} alt="Image fusionnée" className='result-image'/>
+
       <p>{generatedSynopsis}</p>
     </div>
-  )}
+    
+    
+  )
+)}
+
 </div>
     </div>
   );
