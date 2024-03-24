@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import '../App.css';
 import AddFavourites from './AddFavourites';
 import getMovieDetails from './requests/getMovieDetails';
-
+import InfoPage from '../pages/InfoPage';
+import GamePage from '../pages/GamePage';
 
 const MovieListFav = ({ movies, selectedType, favDetails, setFavDetails }) => {
-  
+  const [currentPage, setCurrentPage] = useState('home');
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [cliquedMovie, setCliquedMovie] = useState(null);
+  const [showInfoPage, setShowInfoPage] = useState(false);
   
   useEffect(() => {
     // Cette fonction sera exécutée chaque fois que `movies` change
@@ -14,6 +17,22 @@ const MovieListFav = ({ movies, selectedType, favDetails, setFavDetails }) => {
   }, [movies]);
 
 
+
+  const handleClick = async (movieId) => {
+    try {
+      const movieData = await getMovieDetails({ selectedType, movieId });
+      setSelectedMovie(movieData);
+      setShowInfoPage(true);
+      setCliquedMovie(movieData);
+    } catch (error) {
+      console.error('Error fetching movie details:', error);
+    }
+    
+  }
+
+if (showInfoPage && cliquedMovie) {
+  return <InfoPage movie={cliquedMovie} setShowInfoPage={setShowInfoPage} />;
+}
   const handleMouseOver = async (movieId) => {
     try {
       const movieData = await getMovieDetails({ selectedType, movieId });
@@ -28,6 +47,8 @@ const MovieListFav = ({ movies, selectedType, favDetails, setFavDetails }) => {
   };
 
   return (
+    
+    
     <React.Fragment>
       {movies.map((movie, index) => (
         <div
@@ -60,14 +81,19 @@ const MovieListFav = ({ movies, selectedType, favDetails, setFavDetails }) => {
       )}
           
           {selectedMovie && ( // Afficher les détails uniquement si un film est sélectionné
+            <button
+              className='overlay d-flex align-items-center justify-content-center'
+              onClick={() => handleClick(selectedMovie.id)}>
             <div className='overlay d-flex align-items-center justify-content-center'>
               <AddFavourites movie={selectedMovie} selectedType={selectedType} favDetails={favDetails} setFavDetails={setFavDetails} />
             </div>
+          </button>
           )}
           
         </div>
       ))}
     </React.Fragment>
+    
   );
 };
 

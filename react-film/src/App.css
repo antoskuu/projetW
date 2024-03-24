@@ -417,3 +417,14 @@ body {
 	display: flex;
 	justify-content: center; /* Centre le conteneur horizontalement */
   }
+
+  .movie-info-page {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+  }
+  
+  .movie-poster {
+	width: 200px;
+	height: auto;
+  }
