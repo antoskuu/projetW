@@ -1,5 +1,5 @@
 body {
-	background: radial-gradient(ellipse at bottom, #ffffff 0%, #000000 100%);
+	background: radial-gradient(ellipse at bottom, #56595c 0%, #000000 100%);
 	color: #ffffff;
 }
 
@@ -21,9 +21,19 @@ body {
   .result-image {
 	border-radius: 20px;
   }
+
+
 .result-container {
 	display: flex;
 	align-items: center; /* Aligne verticalement les éléments au centre */
+}
+
+.result-text{
+	margin-left:20px;
+	max-width: 512px; /* Limite de largeur pour le paragraphe */
+	max-height: 512px; /* Limite de largeur pour le paragraphe */
+	font-size: 18px; /* Augmente la taille de la police */
+	overflow: hidden;
 }
 
 .result-image {

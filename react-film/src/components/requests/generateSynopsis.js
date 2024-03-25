@@ -1,3 +1,17 @@
+function separateStrings(inputString) {
+  // Séparation de la chaîne en parties selon le séparateur "Synopsis : "
+  const parts = inputString.split("Synopsis : ");
+
+  const titreString = parts[0].trim();
+  const synopsisString = "Synopsis : " + parts[1].trim();
+  console.log(titreString)
+  console.log(synopsisString)
+  return [titreString, synopsisString];
+}
+
+
+
+
 const generateSynopsis = async (filmA, filmB) => {
     try {
       console.log(filmA, filmB)
@@ -19,7 +33,8 @@ const generateSynopsis = async (filmA, filmB) => {
       const response = await fetch("https://api.edenai.run/v2/text/generation", options);
       const data = await response.json();
       console.log(data)
-      return(data.openai.generated_text);
+
+      return(separateStrings(data.openai.generated_text));
     } catch (error) {
       console.error(error);
     }

@@ -14,7 +14,7 @@ const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
   const [movies, setMovies] = useState([]);
   const [combinedMovies, setCombinedMovies] = useState([]);
   const [generatedImage, setGeneratedImage] = useState('');
-  const [generatedSynopsis, setGeneratedSynopsis] = useState('');
+  const [generatedSynopsis, setGeneratedSynopsis] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -44,6 +44,8 @@ const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
       setGeneratedImage(imageUrl);
       const synopsis = await generateSynopsis(`${selectedType === 'movie' ? combinedMovies[0].title : combinedMovies[0].name} ${selectedType === 'movie' ? combinedMovies[1].title : combinedMovies[1].name}`);
       setGeneratedSynopsis(synopsis)
+      console.log("Synopsis généré")
+      console.log(generatedSynopsis)
       setIsLoading(true);
     } else {
       console.log("Veuillez sélectionner deux films pour fusionner.");
@@ -155,7 +157,6 @@ const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
         <button onClick={() => {handleGenerate();if (combinedMovies.length === 2)setIsLoading(true); }} type="fire-button" id="fusionButton">FUSION</button>
       </div>
       <h1 className="big-texts">Oeuvre fusionnée :</h1>
-      <div className='movie-container'>
 
       {isLoading ? (
   <div className="loading-spinner"></div>
@@ -163,15 +164,16 @@ const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
   generatedImage && (
     <div className='result-container'>
       <img src={generatedImage} alt="Fusionnée" className='result-image'/>
-
-      <p>{generatedSynopsis}</p>
+      
+      <p className='result-text'>{generatedSynopsis[0]}</p>
+      
+      <p className='result-text'>{generatedSynopsis[1]}</p>
     </div>
     
     
   )
 )}
 
-</div>
     </div>
   );
 };
