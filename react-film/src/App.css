@@ -1,5 +1,5 @@
 body {
-	background: radial-gradient(ellipse at bottom, #56595c 0%, #000000 100%);
+	background: #000000;
 	color: #ffffff;
 }
 
@@ -375,13 +375,15 @@ body {
 .h1-button-style {
 	display: inline-block;
 	border: 2px solid #000; /* Changez la couleur de la bordure selon vos préférences */
-	padding: 10px 20px;
+	padding: 1px 1px;
 	text-decoration: none;
 	background-color: transparent;
 	color: #fff; /* Changez la couleur du texte selon vos préférences */
 	cursor: pointer;
-	font-size: 2em; /* Taille de police pour h1 */
+	font-size: 1em; /* Taille de police pour h1 */
 	transition: color 0.3s ease, border-color 0.3s ease;
+
+
   }
   
   .h1-button-style:hover {

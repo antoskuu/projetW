@@ -71,8 +71,9 @@ const App = () => {
   return (
     <div>
       <header className="header">
-      <button className="h1-button-style"onClick={goToHome}>TC-Movies</button>
-
+      <button className="h1-button-style" onClick={goToHome}>
+  <img src={process.env.PUBLIC_URL + '/logo.png'} alt="logo"style={{width: '150px', height: '150px'}} />
+</button>
 <div className="films_series">
   
     
