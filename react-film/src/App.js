@@ -8,6 +8,7 @@ import ChatWindow from './components/ChatWindow';
 import ConnexionPage from './pages/connexion';
 import InscriptionPage from './pages/inscription'; 
 import Cookies from 'js-cookie';
+import FindGamePage from './pages/FindGamePage';
 
 
 
@@ -38,6 +39,10 @@ const App = () => {
     setCurrentPage('connexion');
   };
 
+  const goToFindGamePage = () => { // Nouvelle fonction pour aller à la page de connexion
+    setCurrentPage('findgame');
+  };
+
   const handleSearch = async (searchValue) => {
     setSearchValue(searchValue);
   };
@@ -55,8 +60,12 @@ const App = () => {
     case 'home':
       page = <HomePage selectedType={selectedType} changeSelectedType={changeSelectedType} searchValue={searchValue}/>;
       break;
+    
     case 'game':
       page = <GamePage selectedType={selectedType} changeSelectedType={changeSelectedType} searchValue={searchValue}/>;
+      break;
+    case 'findgame':
+      page = <FindGamePage/>;
       break;
     case 'connexion':
       page = <ConnexionPage goToHome={goToHome} />;  
@@ -90,6 +99,7 @@ const App = () => {
   <button className="header-button"onClick={goToGamePage}>Jeux</button>
   <div className="dropdown-content">
   <button className="header-button" onClick={goToGamePage}>Fusion</button>
+  <button className="header-button" onClick={goToFindGamePage}>Devine</button>
   </div>
 </div>
         <SearchBox handleSearch={handleSearch}/>

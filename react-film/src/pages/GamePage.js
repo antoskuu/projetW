@@ -122,7 +122,7 @@ const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
   
       <div className='film-container'>
         <div className='film-column'>
-          <h2>Film 1 : {selectedType === 'movie' ? (combinedMovies[0] ? combinedMovies[0].title : 'A choisir') : (combinedMovies[0] ? combinedMovies[0].name : 'A choisir')}</h2>
+          <h2 className='title'>Film 1 : {selectedType === 'movie' ? (combinedMovies[0] ? combinedMovies[0].title : 'A choisir') : (combinedMovies[0] ? combinedMovies[0].name : 'A choisir')}</h2>
           {combinedMovies[0] && (
             <div className='movie-container'>
               <img
@@ -135,7 +135,7 @@ const GamePage = ({ selectedType, changeSelectedType, searchValue }) => {
           )}
         </div>
         <div className='film-column'>
-          <h2>Film 2 : {selectedType === 'movie' ? (combinedMovies[1] ? combinedMovies[1].title : 'A choisir') : (combinedMovies[1] ? combinedMovies[1].name : 'A choisir')}</h2>
+          <h2 className='title'>Film 2 : {selectedType === 'movie' ? (combinedMovies[1] ? combinedMovies[1].title : 'A choisir') : (combinedMovies[1] ? combinedMovies[1].name : 'A choisir')}</h2>
           {combinedMovies[1] && (
             <div className='movie-container'>
               <img
