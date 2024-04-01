@@ -1,0 +1,176 @@
+body {
+	background: #000000;
+	color: #ffffff;
+}
+
+.movie-app > .row {
+	overflow-x: auto;
+	flex-wrap: nowrap;
+	height: 100%; 
+    width: 100%; 
+	padding: 20px 0;
+}
+
+.image-container img {
+  width: 300px;
+  height: auto;
+  border-radius: 20px;
+  /* Supprimez la transition ici */
+}
+.image-container {
+  width: 300px;
+  height : auto;
+  position:relative;
+  border-radius: 20px;
+}
+
+.image-container:hover {
+  cursor: pointer;
+}
+
+.image-container:hover img {
+	opacity: 0.2;
+  transform: scale(1.1); /* Déplacez la transition ici */
+  transition: transform 0.2s;
+  border-radius: 20px;
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+.overlay {
+	position: top;
+	background: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	transition: 0.5s ease;
+	opacity: 0;
+	bottom: 0;
+	font-size: 20px;
+	padding: 20px;
+	text-align: center;
+}
+
+.bouton-serie-film {
+	text-align: center;
+	margin-bottom: 20px;
+}
+  
+.bouton-serie-film button {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	margin: 0 10px;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+  
+#bouton-serie:disabled,
+#bouton-film:disabled {
+	background-color: #6c757d;
+	cursor: default;
+}
+  
+#bouton-serie:focus,
+#bouton-film:focus {
+	outline: none;
+}
+  
+#bouton-serie:focus:not(:disabled),
+#bouton-film:focus:not(:disabled) {
+	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.movie-details {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px;
+	/* Retirez le fond noir semi-transparent */
+	background-color: transparent; 
+	color: white; /* Texte en blanc pour une meilleure lisibilité */
+  }
+  
+  .details {
+	text-align: center;
+  }
+  
+  .title {
+	font-size: 24px;
+  }
+  
+  .description {
+	max-height: calc(1.2em * 5); /* Hauteur maximale de 5 lignes */
+	overflow: hidden; /* Cacher le texte qui dépasse */
+	text-overflow: ellipsis; /* Ajouter des points de suspension pour indiquer que le texte est tronqué */
+	position: relative; /* Permet de positionner le pseudo-élément ::after par rapport à son parent */
+  }
+
+  
+  .description::after {
+	content: '...'; /* Contenu du pseudo-élément */
+	position: absolute; /* Positionne le pseudo-élément par rapport au parent */
+	bottom: 0; /* Positionne le pseudo-élément au bas du parent */
+	right: 0; /* Positionne le pseudo-élément à l'extrémité droite du parent */
+	color: white; /* Couleur du texte */
+  }
+  
+  .add-favourites {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+  
+  .add-favourites span {
+	margin-right: 5px;
+  }
+
+
+  .chat-window {
+	position: fixed;
+	bottom: 0px;
+	right: 20px;
+	width: 500px;
+  }
+  
+  .chat-header {
+	background-color: #535353;
+	color: #fff;
+	padding: 10px;
+	cursor: pointer;
+	border-top-left-radius: 20px; /* Arrondir uniquement l'angle supérieur gauche */
+	border-top-right-radius: 20px; /* Arrondir uniquement l'angle supérieur droit */
+  }
+  
+  .chat-content {
+	background-color: #666666;
+	padding: 10px;
+	height: 500px;
+	overflow-y: auto;
+	display: none; /* Masquer le contenu par défaut */
+	transition: transform 0.3s ease; /* Ajouter une transition */
+	transform: translateY(100%); /* Déplacer le contenu en dehors de la vue par défaut */
+  }
+  
+  .chat-content.open {
+	display: block; /* Afficher le contenu lorsque la classe 'open' est appliquée */
+	transform: translateY(0); /* Faire glisser le contenu vers le haut */
+  }
+
+
+  .chat-input {
+	position: absolute; /* Position absolue pour la fixer en bas */
+	bottom: 0; /* Alignement en bas */
+	left: 0; /* Alignement à gauche */
+	width: 100%; /* Utilisation de toute la largeur */
+	padding: 8px;
+	border: none; /* Suppression des bordures */
+	color: #ffffff; /* Couleur du texte */
+  }
