@@ -8,9 +8,9 @@ const SearchBox = ({ handleSearch }) => {
   };
 
   return (
-    <div className='col col-sm-4'>
+    <div className='search-bar'>
       <input
-        className='form-control'
+      type='text'
         onKeyPress={handleKeyPress}
         placeholder='Rechercher...'
       ></input>

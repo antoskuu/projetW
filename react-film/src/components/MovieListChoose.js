@@ -1,19 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../App.css';
-import AddFavourites from './AddFavourites';
+import AddChoosed from './AddChoosed';
+import getMovieDetails from './requests/getMovieDetails';
 
-const getMovieDetails = async ({ selectedType, movieId }) => {
-  const url = `https://api.themoviedb.org/3/${selectedType}/${movieId}?api_key=f33b828f3a9d89dcc02bf38eaea2b131&language=fr-FR`;
-  const response = await fetch(url);
-  const responseJson = await response.json();
-
-  if (responseJson) {
-    return responseJson;
-  }
-};
-
-const MovieList = ({ movies, selectedType }) => {
+const MovieListChoose = ({ movies, selectedType, combinedMovies, setCombinedMovies}) => {
+  
   const [selectedMovie, setSelectedMovie] = useState(null);
+  
+  useEffect(() => {
+    setSelectedMovie(null); // Réinitialiser le film sélectionné
+  }, [movies]);
+
 
   const handleMouseOver = async (movieId) => {
     try {
@@ -25,7 +22,7 @@ const MovieList = ({ movies, selectedType }) => {
   };
 
   const handleMouseLeave = () => {
-    setSelectedMovie(null); // Réinitialiser les détails du film lorsque l'utilisateur quitte l'image
+    setSelectedMovie(null);
   };
 
   return (
@@ -35,15 +32,15 @@ const MovieList = ({ movies, selectedType }) => {
           className='image-container d-flex justify-content-start m-3'
           key={index}
           onMouseOver={() => handleMouseOver(movie.id)}
-          onMouseLeave={handleMouseLeave} // Ajouter un gestionnaire d'événements onMouseLeave pour réinitialiser les détails du film
+          onMouseLeave={handleMouseLeave}
         >
           <img
             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-            alt='movie'
+            alt={selectedType === "movie" ? movie.title : movie.name}
           />
           {selectedMovie && ( // Afficher les détails uniquement si un film est sélectionné
             <div className='overlay d-flex align-items-center justify-content-center'>
-              <AddFavourites movie={selectedMovie} selectedType={selectedType} />
+              <AddChoosed movie={selectedMovie} selectedType={selectedType} combinedMovies={combinedMovies} setCombinedMovies={setCombinedMovies} />
             </div>
           )}
         </div>
@@ -52,4 +49,5 @@ const MovieList = ({ movies, selectedType }) => {
   );
 };
 
-export default MovieList;
+export default MovieListChoose;
+

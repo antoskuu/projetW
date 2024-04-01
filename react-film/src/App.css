@@ -3,6 +3,53 @@ body {
 	color: #ffffff;
 }
 
+
+.film-container {
+	display: flex;
+	justify-content: space-around; /* Pour aligner les colonnes */
+  }
+  
+  .film-column {
+	width: 45%; /* Largeur de chaque colonne */
+  }
+  
+  .movie-container {
+	margin-bottom: 20px; /* Espacement entre les films */
+	display: flex;
+  }
+  
+  .result-image {
+	border-radius: 20px;
+  }
+
+
+.result-container {
+	display: flex;
+	align-items: center; /* Aligne verticalement les éléments au centre */
+}
+
+.result-text{
+	margin-left:20px;
+	max-width: 512px; /* Limite de largeur pour le paragraphe */
+	max-height: 512px; /* Limite de largeur pour le paragraphe */
+	font-size: 18px; /* Augmente la taille de la police */
+	overflow: hidden;
+}
+
+.result-image {
+	margin-right: 20px; /* Ajoute un espace à droite de l'image */
+}
+  
+  .movie-container p {
+	margin-left:20px;
+	max-width: 300px; /* Limite de largeur pour le paragraphe */
+	max-height: 430px; /* Limite de largeur pour le paragraphe */
+	font-size: 18px; /* Augmente la taille de la police */
+	overflow: hidden;
+  }
+  
+
+
 .movie-app > .row {
 	overflow-x: auto;
 	flex-wrap: nowrap;
@@ -38,6 +85,9 @@ body {
 .image-container:hover .overlay {
   opacity: 1;
 }
+
+
+
 .overlay {
 	position: top;
 	background: rgba(0, 0, 0, 0.8);
@@ -53,6 +103,7 @@ body {
 .bouton-serie-film {
 	text-align: center;
 	margin-bottom: 20px;
+	
 }
   
 .bouton-serie-film button {
@@ -66,24 +117,10 @@ body {
 	transition: background-color 0.3s ease;
 }
   
-#bouton-serie:disabled,
-#bouton-film:disabled {
-	background-color: #6c757d;
-	cursor: default;
-}
-  
-#bouton-serie:focus,
-#bouton-film:focus {
-	outline: none;
-}
-  
-#bouton-serie:focus:not(:disabled),
-#bouton-film:focus:not(:disabled) {
-	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
 
 .movie-details {
 	position: absolute;
+	text-align: center;
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -98,12 +135,10 @@ body {
 	color: white; /* Texte en blanc pour une meilleure lisibilité */
   }
   
-  .details {
-	text-align: center;
-  }
-  
   .title {
+	color: #fff;
 	font-size: 24px;
+	margin-right: 20px;
   }
   
   .description {
@@ -126,13 +161,37 @@ body {
     position: absolute;
     bottom: 0;
     right: 0;
+	font-size: 20px;
 }
+
+
   
   .add-favourites span {
 	margin-right: 5px;
   }
 
 
+
+  .number-icons {
+	display: flex;
+	justify-content: center;
+	margin-top: 10px;
+  }
+  
+  .number-icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30px;
+	height: 30px;
+	border: 2px solid red; /* Couleur du contour */
+	border-radius: 50%; /* Pour créer un cercle */
+	font-size: 16px; /* Taille du texte */
+	color: red; /* Couleur du texte */
+	font-weight: bold; /* Texte en gras */
+	margin: 0 5px; /* Espacement horizontal entre les chiffres */
+  }
+  
   .chat-window {
 	position: fixed;
 	bottom: 0px;
@@ -174,3 +233,213 @@ body {
 	border: none; /* Suppression des bordures */
 	color: #ffffff; /* Couleur du texte */
   }
+
+  .header-button.selected {
+	background-color: #6495ED; /* Couleur de fond plus foncée pour le bouton sélectionné */
+  }
+
+  .header-button {
+	background-color: #007bff;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-right: 10px;
+	transition: background-color 0.3s ease; /* Ajoute une transition sur la couleur de fond */
+  }
+  
+  .header-button:hover {
+	background-color: #0056b3; /* Change la couleur de fond lorsque la souris passe dessus */
+  }
+  
+  .header-button:active {
+	background-color: #004085; /* Change la couleur de fond lorsque le bouton est cliqué */
+  }
+  .connexion_inscription {
+	margin-left: auto;
+  }
+
+  .films_series {
+	margin-right: auto;
+  }
+
+
+  .header {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+  }
+  
+  .search-bar input {
+	padding: 10px;
+	width: 1000px;
+	border-radius: 10px;
+	
+  }
+
+
+  .big-texts {
+	text-align: center;
+	font-size: 40px; /* Taille de police plus grande */
+	color: #cacaca; /* Couleur de texte */
+  }
+
+  .note-circle {
+	position: absolute;
+	
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	position: absolute;
+    bottom: 0;
+    left: 0;
+
+	margin-left: 30px;
+	margin-bottom: 14px;
+  }
+
+
+.date {
+	background-color: #fff; /* Couleur de fond blanche */
+	color: #000; /* Couleur de texte noire */
+	padding: 5px; /* Espace intérieur autour du texte */
+	border-radius: 5px; /* Coins arrondis */
+	font-size: 10px;
+	text-transform: uppercase; 
+}
+
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+  }
+  
+  .dropdown-content {
+	visibility: hidden;
+	position: absolute;
+	background-color: #000000;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	opacity: 0;
+	transform: scaleY(0); /* Ajouté */
+	transform-origin: top; /* Ajouté */
+	transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease; /* Modifié */
+  }
+  
+  .dropdown:hover .dropdown-content {
+	visibility: visible;
+	opacity: 1;
+	transform: scaleY(1); /* Ajouté */
+  }
+  
+  .dropdown-content button {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+  }
+  
+.select-type {
+	visibility: visible;
+	position: relative;
+	background-color: #282828;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	opacity: 1; /* Rend le select complètement opaque */
+	transform: scaleY(1); /* Donne au select sa hauteur normale */
+	transform-origin: top;
+	transition: opacity 0.5s ease, visibility 0.5s ease, transform 0.5s ease;
+}
+
+.dropdown:hover .select-type {
+	visibility: visible;
+	opacity: 1;
+	transform: scaleY(1);
+}
+
+.select-type option {
+	color: white;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.h1-button-style {
+	display: inline-block;
+	border: 2px solid #000; /* Changez la couleur de la bordure selon vos préférences */
+	padding: 1px 1px;
+	text-decoration: none;
+	background-color: transparent;
+	color: #fff; /* Changez la couleur du texte selon vos préférences */
+	cursor: pointer;
+	font-size: 1em; /* Taille de police pour h1 */
+	transition: color 0.3s ease, border-color 0.3s ease;
+
+
+  }
+  
+  .h1-button-style:hover {
+	display: inline-block;
+	border: 2px solid #fff; 
+	color: #fff; /* Changez la couleur du texte au survol selon vos préférences */
+	border-color: #fff; /* Changez la couleur de la bordure au survol selon vos préférences */
+  }
+
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+  
+  .loading-spinner {
+	position: absolute;
+	justify-content: center;
+	border: 5px solid #f3f3f3;
+	border-top: 5px solid #3498db;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	animation: spin 2s linear infinite;
+	
+  }
+  .button-spinner-container {
+	display: flex;
+	justify-content: center; /* Centre le conteneur horizontalement */
+  }
+
+  .movie-info-page {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+  }
+  
+  .movie-poster {
+	width: 200px;
+	height: auto;
+  }
+
+  .invisible-button {
+	border: none;
+	background: transparent;
+	box-shadow: none;
+	color: inherit;
+	width: 0px; /* Ajustez à la largeur désirée */
+  height: 0px; /* Ajustez à la hauteur désirée */
+  padding: 10px; 
+  overflow: hidden;
+
+  }
+  
+  .invisible-button:focus,
+  .invisible-button:hover {
+	outline: none;
+  }
+
