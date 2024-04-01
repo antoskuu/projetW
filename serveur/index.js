@@ -6,7 +6,7 @@ const multer = require('multer');
 
 const app = Express(); 
 app.use(cors()); // cela configure votre serveur Express pour inclure les en-têtes CORS appropriés dans les réponses aux requêtes HTTP. Cela permet à votre serveur d'accepter les requêtes provenant de domaines différents de celui sur lequel il est hébergé
-app.use(Express.json()); // Ajoutez cette ligne
+app.use(Express.json());
 
 
 const CONNECTION_STRING = "mongodb+srv://admin:1234@websiteletterboxd.arhc7wc.mongodb.net/?retryWrites=true&w=majority&appName=websiteLetterboxd";
