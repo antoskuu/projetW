@@ -1,15 +1,33 @@
-# [v0] Projet W
-Site inspiré de [Letterboxd](https://letterboxd.com/)
+# WELDER : Projet WEB (Groupe 13)
 
-[Gestion de projet](https://trello.com/invite/b/HDm0v5G6/ATTIe56c3290a3df3f47b3d46dfb3d7ef2898872D7D2/projet-w)
 
-[Forum qui parle des API de films](https://www.developpez.net/forums/d1470353/webmasters-developpement-web/general-conception-web/webmarketing/api-recuperer-infos-films-series-etc/)
+## Présentation
+WELDER est une page web qui te donne accès à un vaste catalogue de fils et de séries, tout en te permettant de créer une liste personnalisée de tes œuvres préférées pour les visionner plus tard. Chaque titre est accompagné d'une description, ainsi que d'une note moyenne attribuée par les utilisateurs. 
 
-v0 :
+WELDER aussi conçu pour stimuler ta créativité, tester tes connaissances cinématographiques, et te faire passer un bon moment grâce à ses différents jeux, tels que la fusion de films ou les devinettes de films. 
 
-- Un système de login dès le début qui pull une bdd
+## Le Site
 
-- Une fois connecté affichage des films et séries depuis une api, cliquable qui affiche les infos
+WELDER surgit comme un site type Letterboxd afin d'échanger des opinions à propos des films. WELDER intègre aussi, à différence de Letterboxd, des séries. .
+### Accueil
+Welder présente une page d'accueil agréable qui permet de visualiser les films et séries du moment. Une barre de scroll permet de visualiser différents titres, et un bouton permet de changer entre les films et les séries. 
 
-- Barre de recherche en haut
+![Alt text](https://image.noelshack.com/fichiers/2024/14/1/1712002400-captura-de-pantalla-2024-04-01-220942.jpg)
 
+Chaque titre est accompagné d'une date de sortie, d'une synopsis, accéssible au complet à l'aide d'un click, et d'une note, attribuée par les utilisateurs du site. L'icone du coeur permet d'ajouter le film à la liste de favoris. 
+
+![Alt text](https://image.noelshack.com/fichiers/2024/14/1/1712002965-captura-de-pantalla-2024-04-01-222229.png)
+
+Cette liste de favoris permet de marquer les titres qui intéressent l'utilisateur.
+
+![Alt text](https://image.noelshack.com/fichiers/2024/14/1/1712003307-captura-de-pantalla-2024-04-01-222742.png)
+
+### Jeux
+
+Afin de se différentier de sa concurrence, WELDER présente aussi un bouton `Jeux`, qui donne accès à deux jeux divertissants.
+
+#### Fusion
+
+Dans `Fusion`, nous avons la possibilité de choisir entre deux films ou deux séries à fusionner. Ce processus combine les synopsis, les univers, les personnages et même les couvertures des deux titres originaux pour créer un tout nouveau titre.
+
+![Alt text](https://image.noelshack.com/fichiers/2024/14/1/1712004548-captura-de-pantalla-2024-04-01-224851.png)
