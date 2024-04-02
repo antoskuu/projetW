@@ -39,9 +39,7 @@ Dans **Fusion**, nous avons la possibilité de choisir entre deux films ou deux 
 
 - **Devine**
 
-Dans **Devine**, on part cette fois-ci d'un titre fictif, combinaison de deux titres réels. Notre objectif est de trouver les noms de ces deux titres à partir du synopsis et de la couverture du nouveau titre fictif.
-
-MANQUE PHOTO
+Dans **Devine**, on part cette fois-ci d'un titre fictif, combinaison de deux titres réels. Notre objectif est de trouver les noms de ces deux titres à partir du synopsis et de la couverture du nouveau titre fictif. Ce jeu est actuellement en cours de développment et sera bientôt disponible dans le site.
 
 ### Connexion et Chat
 
@@ -53,6 +51,7 @@ Une fois un compte créé, il est possible de s'inscrire et utiliser le chat.
 
 ![Alt text](https://image.noelshack.com/fichiers/2024/14/1/1712005980-captura-de-pantalla-2024-04-01-231138.jpg)
 
+Dans cette version, le chat actuel est restreint à une utilisation locale. Une amélioration envisageable serait d'intégrer des connexions entre machines en utilisant des `sockets`.
 
 ## Backend
 
@@ -106,6 +105,7 @@ npm install express
 Une fois le serveur connecté, accédez au dossier _src_ dans l'autre terminal et exécutez la ligne suivante :
 
 ```
+cd chemin/vers/src
 npm start 
 ```
 Si vous ne l'avez pas déjà fait, vous devez également installer `js-cookie` :
