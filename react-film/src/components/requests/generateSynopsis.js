@@ -23,7 +23,7 @@ const generateSynopsis = async (filmA, filmB) => {
         },
         body: JSON.stringify({
             "providers": "openai",
-            "text": `En français : Créez un titre et un synopsis combinés pour les deux films : ${filmA} et ${filmB}. Le titre et le synopsis doivent être humoristiques et bien intégrés. Veuillez suivre le format ci-dessous : Titre : [Votre titre combiné] Synopsis : [Votre synopsis combiné].`,
+            "text": `En français : Créez un titre et un synopsis combinés pour les deux films : ${filmA} et ${filmB}. Le titre et le synopsis doivent être humoristiques et bien intégrés. L'objectif est que ce soit drole a lire et pas forcement realiste, part dans un delire le plus loufoque possible. Veuillez suivre le format ci-dessous : Titre : [Votre titre combiné] Synopsis : [Votre synopsis combiné].`,
             "temperature": 0.7,
             "max_tokens": 1000,
             "fallback_providers": ""
